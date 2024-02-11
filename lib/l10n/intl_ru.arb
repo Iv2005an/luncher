@@ -2,6 +2,11 @@
   "restaurants": "Рестораны",
   "wishes": "Пожелания",
   "offers": "Предложения",
-  "newRestaurant": "Новый ресторан",
-  "settings": "Настройки"
+  "addRestaurant": "Добавление ресторана",
+  "settings": "Настройки",
+  "delete": "Удалить",
+  "services": "Услуги:",
+  "address": "Адрес: ",
+  "metroStations": "Станции метро:",
+  "cancel": "Отмена"
 }

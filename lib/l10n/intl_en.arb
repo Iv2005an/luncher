@@ -2,6 +2,11 @@
   "restaurants": "Restaurants",
   "wishes": "Wishes",
   "offers": "Offers",
-  "newRestaurant": "New restaurant",
-  "settings": "Settings"
+  "addRestaurant": "Add restaurant",
+  "settings": "Settings",
+  "delete": "Delete",
+  "services": "Services:",
+  "address": "Address: ",
+  "metroStations": "Metro stations:",
+  "cancel": "Cancel"
 }

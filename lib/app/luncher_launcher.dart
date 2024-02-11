@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:luncher/generated/l10n.dart';
+
+import 'package:luncher/screens/screens.dart';
 
 class Launcher extends StatefulWidget {
   const Launcher({super.key});
@@ -13,6 +16,7 @@ class _LauncherState extends State<Launcher> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final pagesNames = [
       S.of(context).restaurants,
       S.of(context).wishes,
@@ -20,7 +24,10 @@ class _LauncherState extends State<Launcher> {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text(pagesNames[currentPageIndex]),
+        title: Text(
+          pagesNames[currentPageIndex],
+          style: theme.textTheme.headlineSmall,
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -28,8 +35,10 @@ class _LauncherState extends State<Launcher> {
                   builder: (BuildContext context) {
                     return Scaffold(
                         appBar: AppBar(
-                          title: Text(S.of(context).settings),
-                        ),
+                            title: Text(
+                          S.of(context).settings,
+                          style: theme.textTheme.headlineSmall,
+                        )),
 
                         // TODO: Add settings screen
                         body: const Placeholder());
@@ -40,8 +49,7 @@ class _LauncherState extends State<Launcher> {
         ],
       ),
       body: [
-        // TODO: Add restaurants screen
-        const Placeholder(),
+        const RestaurantsScreen(),
 
         // TODO: Add wishes screen
         const Placeholder(),

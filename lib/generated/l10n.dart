@@ -80,11 +80,11 @@ class S {
     );
   }
 
-  /// `New restaurant`
-  String get newRestaurant {
+  /// `Add restaurant`
+  String get addRestaurant {
     return Intl.message(
-      'New restaurant',
-      name: 'newRestaurant',
+      'Add restaurant',
+      name: 'addRestaurant',
       desc: '',
       args: [],
     );
@@ -95,6 +95,56 @@ class S {
     return Intl.message(
       'Settings',
       name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Services:`
+  String get services {
+    return Intl.message(
+      'Services:',
+      name: 'services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address: `
+  String get address {
+    return Intl.message(
+      'Address: ',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Metro stations:`
+  String get metroStations {
+    return Intl.message(
+      'Metro stations:',
+      name: 'metroStations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
       desc: '',
       args: [],
     );

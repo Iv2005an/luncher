@@ -1,4 +1,10 @@
 {
     "cmake.configureOnOpen": false,
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cSpell.words": [
+        "burgerking",
+        "Rostic's",
+        "rostics",
+        "vkusnoitochka"
+    ]
 }

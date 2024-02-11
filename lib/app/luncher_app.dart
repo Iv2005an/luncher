@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:luncher/app/luncher_launcher.dart';
 
 import 'package:luncher/generated/l10n.dart';
+
+import 'luncher_launcher.dart';
 
 class LuncherApp extends StatelessWidget {
   const LuncherApp({super.key});
