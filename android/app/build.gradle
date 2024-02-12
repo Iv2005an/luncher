@@ -22,6 +22,11 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def mapkitApiKey = localProperties.getProperty('MAPKIT_API_KEY')
+if (mapkitApiKey == null) {
+    mapkitApiKey = ''
+}
+
 android {
     namespace "com.example.luncher"
     compileSdkVersion flutter.compileSdkVersion
@@ -45,10 +50,11 @@ android {
         applicationId "com.example.luncher"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        buildConfigField "String", "MAPKIT_API_KEY", "\"${mapkitApiKey}\""
     }
 
     buildTypes {
@@ -64,4 +70,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'com.yandex.android:maps.mobile:4.4.0-full'
+}

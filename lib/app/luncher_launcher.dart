@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:luncher/generated/l10n.dart';
 
@@ -27,6 +28,10 @@ class _LauncherState extends State<Launcher> {
         title: Text(
           pagesNames[currentPageIndex],
           style: theme.textTheme.headlineSmall,
+        ),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          systemNavigationBarColor:
+              theme.colorScheme.secondaryContainer, // Navigation bar
         ),
         actions: [
           IconButton(
