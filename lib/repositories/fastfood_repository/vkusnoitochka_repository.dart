@@ -1,7 +1,6 @@
 import 'package:vkusnoitochka_api/vkusnoitochka_api.dart';
 
-import 'abstract_franchise_repository.dart';
-import 'models/restaurant_model.dart';
+import 'fastfood_repository.dart';
 
 class VkusnoitochkaRepository implements AbstractFranchiseRepository {
   @override

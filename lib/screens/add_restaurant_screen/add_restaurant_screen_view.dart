@@ -3,9 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import 'package:luncher/generated/l10n.dart';
+import 'package:luncher/screens/restaurants_screen/models/franchise_info.dart';
 
 class AddRestaurantScreen extends StatelessWidget {
-  const AddRestaurantScreen({super.key});
+  const AddRestaurantScreen(
+    this._franchiseInfo, {
+    super.key,
+  });
+  final FranchiseInfo _franchiseInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +21,8 @@ class AddRestaurantScreen extends StatelessWidget {
           children: [
             Text(S.of(context).restaurants),
             SvgPicture.asset(
-              'assets/svg/burgerking.svg',
-              height: 32,
+              _franchiseInfo.assetPlacemark,
+              height: 38,
             ),
           ],
         ),

@@ -14,7 +14,7 @@ class _RestaurantsScreenState extends State<RestaurantsScreen> {
   Widget build(BuildContext context) {
     return PageView(
       scrollDirection: Axis.vertical,
-      children: const [
+      children: [
         BurgerKingRestaurantsPage(),
         RosticsRestaurantsCard(),
         VkusnoitochkaRestaurantsPage(),
