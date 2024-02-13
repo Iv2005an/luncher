@@ -17,6 +17,9 @@ dependencies:
   intl: ^0.18.1
   flutter_svg: ^2.0.9
   yandex_mapkit: ^3.4.0
+  burger_king_russia_api: ^1.0.0
+  kfc_russia_api: ^1.0.0
+  vkusnoitochka_api: ^1.0.0
 
 dev_dependencies:
   flutter_test:
