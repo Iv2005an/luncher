@@ -20,6 +20,8 @@ dependencies:
   burger_king_russia_api: ^1.0.0
   kfc_russia_api: ^1.0.0
   vkusnoitochka_api: ^1.0.0
+  flutter_bloc: ^8.1.4
+  go_router: ^13.2.0
 
 dev_dependencies:
   flutter_test:

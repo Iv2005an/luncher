@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:luncher/generated/l10n.dart';
-import 'package:luncher/screens/restaurants_screen/widgets/add_restaurant_page.dart';
 
 import 'package:luncher/screens/restaurants_screen/widgets/widgets.dart';
 
@@ -35,21 +35,22 @@ abstract class AbstractRestaurantPage extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: OutlinedButton(
-              onPressed: () => Navigator.push(context, MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return Scaffold(
-                      appBar: AppBar(
-                        title: Align(
-                          alignment: Alignment.centerRight,
-                          child: SvgPicture.asset(
-                            'assets/svg/burgerking.svg',
-                            height: 32,
-                          ),
-                        ),
-                      ),
-                      body: const AddRestaurantPage());
-                },
-              )),
+              onPressed: () => context.push('/restaurants/addRestaurant'),
+              // Navigator.push(context, MaterialPageRoute(
+              //   builder: (BuildContext context) {
+              //     return Scaffold(
+              //         appBar: AppBar(
+              //           title: Align(
+              //             alignment: Alignment.centerRight,
+              //             child: SvgPicture.asset(
+              //               'assets/svg/burgerking.svg',
+              //               height: 32,
+              //             ),
+              //           ),
+              //         ),
+              //         body: const AddRestaurantScreen());
+              //   },
+              // )),
               child: Text(
                 S.of(context).addRestaurant,
                 style: TextStyle(color: theme.colorScheme.onBackground),

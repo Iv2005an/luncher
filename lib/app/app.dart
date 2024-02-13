@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:luncher/generated/l10n.dart';
+import 'router.dart';
 
-import 'luncher_launcher.dart';
-
-class LuncherApp extends StatelessWidget {
-  const LuncherApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Luncher',
       localizationsDelegates: const [
         S.delegate,
@@ -22,7 +21,7 @@ class LuncherApp extends StatelessWidget {
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: ThemeMode.system,
-      home: const Launcher(),
+      routerConfig: router,
     );
   }
 }

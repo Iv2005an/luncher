@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:luncher/generated/l10n.dart';
 
-import 'package:luncher/screens/screens.dart';
-
-class Launcher extends StatefulWidget {
-  const Launcher({super.key});
-
-  @override
-  State<Launcher> createState() => _LauncherState();
-}
-
-class _LauncherState extends State<Launcher> {
-  int currentPageIndex = 1;
+class Launcher extends StatelessWidget {
+  const Launcher(this._statefulNavigationShell, {super.key});
+  final StatefulNavigationShell _statefulNavigationShell;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +19,7 @@ class _LauncherState extends State<Launcher> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          pagesNames[currentPageIndex],
+          pagesNames[_statefulNavigationShell.currentIndex],
           style: theme.textTheme.headlineSmall,
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -35,38 +28,16 @@ class _LauncherState extends State<Launcher> {
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return Scaffold(
-                        appBar: AppBar(
-                            title: Text(
-                          S.of(context).settings,
-                          style: theme.textTheme.headlineSmall,
-                        )),
-
-                        // TODO: Add settings screen
-                        body: const Placeholder());
-                  },
-                ));
-              },
+              onPressed: () => context.push('/settings'),
               icon: const Icon(Icons.settings))
         ],
       ),
-      body: [
-        const RestaurantsScreen(),
-
-        // TODO: Add wishes screen
-        const Placeholder(),
-
-        // TODO: Add offers screen
-        const Placeholder(),
-      ][currentPageIndex],
+      body: _statefulNavigationShell,
       bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (pageIndex) => setState(() {
-                currentPageIndex = pageIndex;
-              }),
-          selectedIndex: currentPageIndex,
+          selectedIndex: _statefulNavigationShell.currentIndex,
+          onDestinationSelected: (index) => _statefulNavigationShell.goBranch(
+              index,
+              initialLocation: index == _statefulNavigationShell.currentIndex),
           destinations: [
             NavigationDestination(
                 icon: const Icon(Icons.food_bank_outlined),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'app/luncher_app.dart';
+import 'app/app.dart';
 
 void main() {
-  runApp(const LuncherApp());
+  runApp(const App());
 }
