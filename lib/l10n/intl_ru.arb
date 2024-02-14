@@ -8,5 +8,8 @@
   "services": "Услуги:",
   "address": "Адрес: ",
   "metroStations": "Станции метро:",
-  "cancel": "Отмена"
+  "cancel": "Отмена",
+  "uploadingInformationAboutRestaurants": "Загрузка информации о ресторанах",
+  "somethingWentWrong": "Что-то пошло не так...",
+  "tryAgain": "Попробовать снова"
 }

@@ -8,9 +8,9 @@ class RosticsRestaurantsCard extends AbstractRestaurantPage {
           FranchiseInfo(
             RosticsRepository(),
             'assets/svg/rostics_logo.svg',
-            'assets/svg/rostics_placemark.svg',
-            'assets/svg/rostics_placemark_without_logo.svg',
-            assetPlacemarkDisabled: 'assets/svg/rostics_placemark_disabled.svg',
+            'assets/png/rostics_placemark.png',
+            'assets/png/rostics_placemark_without_logo.png',
+            assetPlacemarkDisabled: 'assets/png/rostics_placemark_disabled.png',
             monochromeAssetLogo: true,
           ),
         );

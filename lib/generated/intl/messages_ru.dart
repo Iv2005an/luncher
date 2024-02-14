@@ -32,6 +32,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "restaurants": MessageLookupByLibrary.simpleMessage("Рестораны"),
         "services": MessageLookupByLibrary.simpleMessage("Услуги:"),
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+        "somethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Попробовать снова"),
+        "uploadingInformationAboutRestaurants":
+            MessageLookupByLibrary.simpleMessage(
+                "Загрузка информации о ресторанах"),
         "wishes": MessageLookupByLibrary.simpleMessage("Пожелания")
       };
 }

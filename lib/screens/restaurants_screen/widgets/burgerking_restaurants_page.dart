@@ -8,10 +8,10 @@ class BurgerKingRestaurantsPage extends AbstractRestaurantPage {
           FranchiseInfo(
             BurgerKingRepository(),
             'assets/svg/burgerking_logo.svg',
-            'assets/svg/burgerking_placemark.svg',
-            'assets/svg/burgerking_placemark_without_logo.svg',
+            'assets/png/burgerking_placemark.png',
+            'assets/png/burgerking_placemark_without_logo.png',
             assetPlacemarkSelected:
-                'assets/svg/burgerking_placemark_selected.svg',
+                'assets/png/burgerking_placemark_selected.png',
           ),
         );
 }

@@ -32,6 +32,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "restaurants": MessageLookupByLibrary.simpleMessage("Restaurants"),
         "services": MessageLookupByLibrary.simpleMessage("Services:"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "somethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Something went wrong..."),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
+        "uploadingInformationAboutRestaurants":
+            MessageLookupByLibrary.simpleMessage(
+                "Uploading information about restaurants"),
         "wishes": MessageLookupByLibrary.simpleMessage("Wishes")
       };
 }

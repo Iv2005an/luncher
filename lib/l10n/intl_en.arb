@@ -8,5 +8,8 @@
   "services": "Services:",
   "address": "Address: ",
   "metroStations": "Metro stations:",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "uploadingInformationAboutRestaurants": "Uploading information about restaurants",
+  "somethingWentWrong": "Something went wrong...",
+  "tryAgain": "Try again"
 }

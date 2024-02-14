@@ -8,10 +8,10 @@ class VkusnoitochkaRestaurantsPage extends AbstractRestaurantPage {
           FranchiseInfo(
             VkusnoitochkaRepository(),
             'assets/svg/vkusnoitochka_logo.svg',
-            'assets/svg/vkusnoitochka_placemark.svg',
-            'assets/svg/vkusnoitochka_placemark_without_logo.svg',
+            'assets/png/vkusnoitochka_placemark.png',
+            'assets/png/vkusnoitochka_placemark_without_logo.png',
             assetPlacemarkDisabled:
-                'assets/svg/vkusnoitochka_placemark_disabled.svg',
+                'assets/png/vkusnoitochka_placemark_disabled.png',
           ),
         );
 }

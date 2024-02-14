@@ -149,6 +149,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Uploading information about restaurants`
+  String get uploadingInformationAboutRestaurants {
+    return Intl.message(
+      'Uploading information about restaurants',
+      name: 'uploadingInformationAboutRestaurants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong...`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Something went wrong...',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try again`
+  String get tryAgain {
+    return Intl.message(
+      'Try again',
+      name: 'tryAgain',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

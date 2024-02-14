@@ -33,6 +33,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/svg/
+    - assets/png/
   
 flutter_intl:
   enabled: true
