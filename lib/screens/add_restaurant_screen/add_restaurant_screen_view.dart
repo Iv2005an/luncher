@@ -19,6 +19,8 @@ class AddRestaurantScreen extends StatefulWidget {
 
 class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
   late final AddRestaurantBloc _addRestaurantBloc;
+  late final YandexMapController _mapController;
+  late double _mapZoom;
 
   @override
   void initState() {
@@ -53,6 +55,20 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
             return Stack(
               children: [
                 YandexMap(
+                  tiltGesturesEnabled: false,
+                  rotateGesturesEnabled: false,
+                  mode2DEnabled: true,
+                  nightModeEnabled:
+                      Theme.of(context).brightness == Brightness.dark,
+                  onMapCreated: (controller) {
+                    controller.setMinZoom(zoom: 3);
+                    _mapController = controller;
+                  },
+                  onCameraPositionChanged: (cameraPosition, reason, finished) {
+                    if (finished) {
+                      setState(() => _mapZoom = cameraPosition.zoom);
+                    }
+                  },
                   mapObjects: [
                     ClusterizedPlacemarkCollection(
                       mapId: const MapObjectId('restaurantPlacemarksMap'),
@@ -74,6 +90,18 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                           opacity: 1,
                         ),
                       ),
+                      onClusterTap: (self, cluster) async {
+                        await _mapController.moveCamera(
+                          animation: const MapAnimation(
+                              type: MapAnimationType.linear, duration: 0.3),
+                          CameraUpdate.newCameraPosition(
+                            CameraPosition(
+                              target: cluster.placemarks.first.point,
+                              zoom: ++_mapZoom,
+                            ),
+                          ),
+                        );
+                      },
                       placemarks: state.restaurants
                           .map(
                             (restaurant) => PlacemarkMapObject(
