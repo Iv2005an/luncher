@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import 'package:luncher/generated/l10n.dart';
 import 'package:luncher/screens/restaurants_screen/models/franchise_info.dart';
 import 'package:luncher/screens/add_restaurant_screen/bloc/add_restaurant_bloc.dart';
-import 'package:luncher/screens/add_restaurant_screen/widgets/widgets.dart';
+import 'package:luncher/screens/add_restaurant_screen/icons/icons.dart';
 
 class AddRestaurantScreen extends StatefulWidget {
   const AddRestaurantScreen(
@@ -19,8 +20,21 @@ class AddRestaurantScreen extends StatefulWidget {
 
 class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
   late final AddRestaurantBloc _addRestaurantBloc;
+  final _mapKey = GlobalKey();
   late final YandexMapController _mapController;
   late double _mapZoom;
+
+  Future<void> _moveToUserCameraPosition() async {
+    final userCameraPosition = await _mapController.getUserCameraPosition();
+    if (userCameraPosition != null) {
+      _mapController.moveCamera(
+          CameraUpdate.newCameraPosition(
+            userCameraPosition.copyWith(
+                zoom: await _mapController.getMaxZoom() - 7),
+          ),
+          animation: const MapAnimation());
+    }
+  }
 
   @override
   void initState() {
@@ -55,14 +69,38 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
             return Stack(
               children: [
                 YandexMap(
+                  key: _mapKey,
                   tiltGesturesEnabled: false,
                   rotateGesturesEnabled: false,
-                  mode2DEnabled: true,
                   nightModeEnabled:
                       Theme.of(context).brightness == Brightness.dark,
-                  onMapCreated: (controller) {
+                  mode2DEnabled: true,
+                  fastTapEnabled: true,
+                  onMapCreated: (controller) async {
                     controller.setMinZoom(zoom: 3);
+
+                    if (await Permission.location.request().isGranted) {
+                      controller.toggleUserLayer(
+                        visible: true,
+                        headingEnabled: false,
+                      );
+                    }
                     _mapController = controller;
+                  },
+                  onUserLocationAdded: (view) async {
+                    await _moveToUserCameraPosition();
+                    final userLocationView = view.pin.copyWith(
+                        icon: PlacemarkIcon.single(PlacemarkIconStyle(
+                            image: BitmapDescriptor.fromBytes(
+                                await UserLocationIcon().asBytes()))));
+                    return view.copyWith(
+                      pin: userLocationView,
+                      arrow: userLocationView,
+                      accuracyCircle: view.accuracyCircle.copyWith(
+                        strokeWidth: 0,
+                        fillColor: Colors.grey.withOpacity(0.5),
+                      ),
+                    );
                   },
                   onCameraPositionChanged: (cameraPosition, reason, finished) {
                     if (finished) {
@@ -92,14 +130,13 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                       ),
                       onClusterTap: (self, cluster) async {
                         await _mapController.moveCamera(
-                          animation: const MapAnimation(
-                              type: MapAnimationType.linear, duration: 0.3),
                           CameraUpdate.newCameraPosition(
                             CameraPosition(
                               target: cluster.placemarks.first.point,
                               zoom: ++_mapZoom,
                             ),
                           ),
+                          animation: const MapAnimation(duration: 0.5),
                         );
                       },
                       placemarks: state.restaurants
@@ -127,6 +164,19 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: SearchBar(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, bottom: 32),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: IconButton.filled(
+                      onPressed: () async => await _moveToUserCameraPosition(),
+                      iconSize: 48,
+                      icon: const Icon(
+                        Icons.navigation,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             );
