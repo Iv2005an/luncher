@@ -5,6 +5,7 @@ import 'package:yandex_mapkit/yandex_mapkit.dart';
 import 'package:luncher/generated/l10n.dart';
 import 'package:luncher/screens/restaurants_screen/models/franchise_info.dart';
 import 'package:luncher/screens/add_restaurant_screen/bloc/add_restaurant_bloc.dart';
+import 'package:luncher/screens/add_restaurant_screen/widgets/widgets.dart';
 
 class AddRestaurantScreen extends StatefulWidget {
   const AddRestaurantScreen(
@@ -52,24 +53,48 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
             return Stack(
               children: [
                 YandexMap(
-                  mapObjects: state.restaurants
-                      .map(
-                        (restaurant) => PlacemarkMapObject(
-                          mapId: MapObjectId(restaurant.id),
-                          point: Point(
-                            latitude: restaurant.latitude,
-                            longitude: restaurant.longitude,
-                          ),
+                  mapObjects: [
+                    ClusterizedPlacemarkCollection(
+                      mapId: const MapObjectId('restaurantPlacemarksMap'),
+                      radius: 60,
+                      minZoom: 15,
+                      onClusterAdded: (self, cluster) async => cluster.copyWith(
+                        appearance: cluster.appearance.copyWith(
                           icon: PlacemarkIcon.single(
                             PlacemarkIconStyle(
-                              image: BitmapDescriptor.fromAssetImage(
-                                widget._franchiseInfo.assetPlacemark,
+                              image: BitmapDescriptor.fromBytes(
+                                await ClusterIcon(
+                                  widget
+                                      ._franchiseInfo.assetPlacemarkWithoutLogo,
+                                  cluster.size,
+                                ).asBytes(),
                               ),
                             ),
                           ),
+                          opacity: 1,
                         ),
-                      )
-                      .toList(),
+                      ),
+                      placemarks: state.restaurants
+                          .map(
+                            (restaurant) => PlacemarkMapObject(
+                              mapId: MapObjectId(restaurant.id),
+                              point: Point(
+                                latitude: restaurant.latitude,
+                                longitude: restaurant.longitude,
+                              ),
+                              icon: PlacemarkIcon.single(
+                                PlacemarkIconStyle(
+                                  image: BitmapDescriptor.fromAssetImage(
+                                    widget._franchiseInfo.assetPlacemark,
+                                  ),
+                                ),
+                              ),
+                              opacity: 1,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
