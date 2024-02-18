@@ -14,7 +14,7 @@ class AddRestaurantScreenLoading extends AddRestaurantScreenState {
 
 class AddRestaurantScreenLoaded extends AddRestaurantScreenState {
   AddRestaurantScreenLoaded(this.restaurants);
-  final List<RestaurantModel> restaurants;
+  final List<AbstractRestaurantModel> restaurants;
 
   @override
   List<Object?> get props => [restaurants];

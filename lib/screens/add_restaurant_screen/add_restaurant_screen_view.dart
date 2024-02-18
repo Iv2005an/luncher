@@ -90,6 +90,7 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                   onUserLocationAdded: (view) async {
                     await _moveToUserCameraPosition();
                     final userLocationView = view.pin.copyWith(
+                        opacity: 1,
                         icon: PlacemarkIcon.single(PlacemarkIconStyle(
                             image: BitmapDescriptor.fromBytes(
                                 await UserLocationIcon().asBytes()))));
@@ -144,8 +145,8 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                             (restaurant) => PlacemarkMapObject(
                               mapId: MapObjectId(restaurant.id),
                               point: Point(
-                                latitude: restaurant.latitude,
-                                longitude: restaurant.longitude,
+                                latitude: restaurant.location.latitude,
+                                longitude: restaurant.location.longitude,
                               ),
                               icon: PlacemarkIcon.single(
                                 PlacemarkIconStyle(

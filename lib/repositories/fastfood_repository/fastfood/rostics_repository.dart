@@ -1,9 +1,21 @@
 import '../fastfood_repository.dart';
 
-class RosticsRepository implements AbstractFastfoodRepository {
+class RosticsRepository extends AbstractFastfoodRepository {
   @override
-  Future<List<RestaurantModel>> getRestaurants() {
-    // TODO: implement getRestaurants
+  Future<List<AbstractRestaurantModel>> getActualRestaurants() {
+    // TODO: implement getActualRestaurants
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<AbstractRestaurantModel>> getRestaurantsFromApi() {
+    // TODO: implement getRestaurantsFromApi
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<AbstractRestaurantModel>> getRestaurantsFromLocal() {
+    // TODO: implement getRestaurantsFromLocal
     throw UnimplementedError();
   }
 }
