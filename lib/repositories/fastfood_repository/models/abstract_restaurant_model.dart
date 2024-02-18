@@ -9,5 +9,5 @@ abstract class AbstractRestaurantModel extends Equatable {
   Location get location;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [id, address, location];
 }

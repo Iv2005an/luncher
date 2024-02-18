@@ -5,17 +5,20 @@ import '../fastfood_repository.dart';
 class VkusnoitochkaRepository extends AbstractFastfoodRepository {
   @override
   Future<List<AbstractRestaurantModel>> getActualRestaurants() {
+    // TODO: implement getActualRestaurants
     return getRestaurantsFromApi();
   }
 
   @override
   Future<List<AbstractRestaurantModel>> getRestaurantsFromApi() async {
-    final rawData = (await VIT.getRestaurants()).data as Map<String, dynamic>;
+    final apiResponse = await VIT.getRestaurants();
+    final rawData = apiResponse.data as Map<String, dynamic>;
     final rawRestaurants = rawData['items'] as List;
     List<VkusnoitochkaRestaurantModel> restaurants = [];
-    for (Map<String, dynamic> rawRestaurant in rawRestaurants) {
-      restaurants.add(VkusnoitochkaRestaurantModel.fromJson(rawRestaurant));
-    }
+    rawRestaurants
+        .map((rawRestaurant) => restaurants
+            .add(VkusnoitochkaRestaurantModel.fromJson(rawRestaurant)))
+        .toList();
     return restaurants;
   }
 
