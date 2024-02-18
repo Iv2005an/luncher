@@ -1,11 +1,11 @@
 import 'package:luncher/repositories/fastfood_repository/fastfood_repository.dart';
-import '../models/franchise_info.dart';
+import '../models/fastfood_info.dart';
 import 'abstract_restaurants_page.dart';
 
 class VkusnoitochkaRestaurantsPage extends AbstractRestaurantPage {
   VkusnoitochkaRestaurantsPage({super.key})
       : super(
-          FranchiseInfo(
+          FastfoodInfo(
             VkusnoitochkaRepository(),
             'assets/svg/vkusnoitochka_logo.svg',
             'assets/png/vkusnoitochka_placemark.png',

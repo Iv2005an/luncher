@@ -1,4 +1,4 @@
-part of 'add_restaurant_bloc.dart';
+part of 'add_restaurant_screen_bloc.dart';
 
 class AddRestaurantEvent {}
 

@@ -1,5 +1,5 @@
 import 'fastfood_repository.dart';
 
-abstract class AbstractFranchiseRepository {
+abstract class AbstractFastfoodRepository {
   Future<List<RestaurantModel>> getRestaurants();
 }

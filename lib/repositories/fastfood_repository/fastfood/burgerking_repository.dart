@@ -1,6 +1,6 @@
-import 'fastfood_repository.dart';
+import '../fastfood_repository.dart';
 
-class BurgerKingRepository implements AbstractFranchiseRepository {
+class BurgerKingRepository implements AbstractFastfoodRepository {
   @override
   Future<List<RestaurantModel>> getRestaurants() {
     // TODO: implement getRestaurants

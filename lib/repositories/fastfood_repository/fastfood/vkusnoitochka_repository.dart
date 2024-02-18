@@ -1,8 +1,8 @@
 import 'package:vkusnoitochka_api/vkusnoitochka_api.dart';
 
-import 'fastfood_repository.dart';
+import '../fastfood_repository.dart';
 
-class VkusnoitochkaRepository implements AbstractFranchiseRepository {
+class VkusnoitochkaRepository implements AbstractFastfoodRepository {
   @override
   Future<List<RestaurantModel>> getRestaurants() async {
     final rawData = (await VIT.getRestaurants()).data as Map<String, dynamic>;

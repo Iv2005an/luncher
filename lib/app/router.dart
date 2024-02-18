@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:luncher/app/launcher.dart';
-import 'package:luncher/screens/restaurants_screen/models/franchise_info.dart';
+import 'package:luncher/screens/restaurants_screen/models/fastfood_info.dart';
 import 'package:luncher/screens/screens.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -22,7 +22,7 @@ final router = GoRouter(
                   path: 'addRestaurant',
                   parentNavigatorKey: _rootNavigatorKey,
                   builder: (context, state) => AddRestaurantScreen(
-                    state.extra as FranchiseInfo,
+                    state.extra as FastfoodInfo,
                   ),
                 )
               ]),

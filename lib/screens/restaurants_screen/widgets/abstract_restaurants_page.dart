@@ -3,15 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:luncher/generated/l10n.dart';
-import '../models/franchise_info.dart';
+import '../models/fastfood_info.dart';
 import 'restaurant_card.dart';
 
 abstract class AbstractRestaurantPage extends StatelessWidget {
   const AbstractRestaurantPage(
-    this._franchiseInfo, {
+    this._fastfoodInfo, {
     super.key,
   });
-  final FranchiseInfo _franchiseInfo;
+  final FastfoodInfo _fastfoodInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,9 @@ abstract class AbstractRestaurantPage extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: SvgPicture.asset(
-          _franchiseInfo.assetLogo,
+          _fastfoodInfo.assetLogo,
           height: 48,
-          colorFilter: _franchiseInfo.monochromeAssetLogo
+          colorFilter: _fastfoodInfo.monochromeAssetLogo
               ? ColorFilter.mode(
                   Theme.of(context).colorScheme.onBackground,
                   BlendMode.srcIn,
@@ -42,7 +42,7 @@ abstract class AbstractRestaurantPage extends StatelessWidget {
             child: OutlinedButton(
               onPressed: () => context.push(
                 '/restaurants/addRestaurant',
-                extra: _franchiseInfo,
+                extra: _fastfoodInfo,
               ),
               child: Text(
                 S.of(context).addRestaurant,

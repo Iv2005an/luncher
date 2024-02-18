@@ -1,8 +1,8 @@
 import 'package:luncher/repositories/fastfood_repository/fastfood_repository.dart';
 
-class FranchiseInfo {
-  FranchiseInfo(
-    this.franchiseRepository,
+class FastfoodInfo {
+  FastfoodInfo(
+    this.fastfoodRepository,
     this.assetLogo,
     this.assetPlacemark,
     this.assetPlacemarkWithoutLogo, {
@@ -10,7 +10,7 @@ class FranchiseInfo {
     this.assetPlacemarkSelected,
     this.monochromeAssetLogo = false,
   });
-  final AbstractFranchiseRepository franchiseRepository;
+  final AbstractFastfoodRepository fastfoodRepository;
   final String assetLogo;
   final bool monochromeAssetLogo;
   final String assetPlacemark;

@@ -4,22 +4,22 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import 'package:luncher/generated/l10n.dart';
-import 'package:luncher/screens/restaurants_screen/models/franchise_info.dart';
-import 'package:luncher/screens/add_restaurant_screen/bloc/add_restaurant_bloc.dart';
+import 'package:luncher/screens/restaurants_screen/models/fastfood_info.dart';
+import 'package:luncher/screens/add_restaurant_screen/bloc/add_restaurant_screen_bloc.dart';
 import 'package:luncher/screens/add_restaurant_screen/icons/icons.dart';
 
 class AddRestaurantScreen extends StatefulWidget {
   const AddRestaurantScreen(
-    this._franchiseInfo, {
+    this._fastfoodInfo, {
     super.key,
   });
-  final FranchiseInfo _franchiseInfo;
+  final FastfoodInfo _fastfoodInfo;
   @override
   State<AddRestaurantScreen> createState() => _AddRestaurantScreenState();
 }
 
 class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
-  late final AddRestaurantBloc _addRestaurantBloc;
+  late final AddRestaurantScreenBloc _addRestaurantBloc;
   final _mapKey = GlobalKey();
   late final YandexMapController _mapController;
   late double _mapZoom;
@@ -39,7 +39,7 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
   @override
   void initState() {
     _addRestaurantBloc =
-        AddRestaurantBloc(widget._franchiseInfo.franchiseRepository);
+        AddRestaurantScreenBloc(widget._fastfoodInfo.fastfoodRepository);
     _addRestaurantBloc.add(LoadRestaurants());
     super.initState();
   }
@@ -50,10 +50,10 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
       appBar: AppBar(
         title: Text(S.of(context).restaurants),
       ),
-      body: BlocBuilder<AddRestaurantBloc, AddRestaurantState>(
+      body: BlocBuilder<AddRestaurantScreenBloc, AddRestaurantScreenState>(
         bloc: _addRestaurantBloc,
         builder: (context, state) {
-          if (state is AddRestaurantsLoading) {
+          if (state is AddRestaurantScreenLoading) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +65,7 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
               ),
             );
           }
-          if (state is AddRestaurantsLoaded) {
+          if (state is AddRestaurantScreenLoaded) {
             return Stack(
               children: [
                 YandexMap(
@@ -119,7 +119,7 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                               image: BitmapDescriptor.fromBytes(
                                 await ClusterIcon(
                                   widget
-                                      ._franchiseInfo.assetPlacemarkWithoutLogo,
+                                      ._fastfoodInfo.assetPlacemarkWithoutLogo,
                                   cluster.size,
                                 ).asBytes(),
                               ),
@@ -150,7 +150,7 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                               icon: PlacemarkIcon.single(
                                 PlacemarkIconStyle(
                                   image: BitmapDescriptor.fromAssetImage(
-                                    widget._franchiseInfo.assetPlacemark,
+                                    widget._fastfoodInfo.assetPlacemark,
                                   ),
                                 ),
                               ),
