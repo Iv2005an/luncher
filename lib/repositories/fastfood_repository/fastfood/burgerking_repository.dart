@@ -2,7 +2,7 @@ import 'package:burger_king_russia_api/burger_king_russia_api.dart';
 
 import '../fastfood_repository.dart';
 
-class BurgerKingRepository extends AbstractFastfoodRepository {
+class BurgerkingRepository extends AbstractFastfoodRepository {
   @override
   Future<List<AbstractRestaurantModel>> getActualRestaurants() {
     // TODO: implement getActualRestaurants

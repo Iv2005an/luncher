@@ -6,7 +6,7 @@ class BurgerKingRestaurantsPage extends AbstractRestaurantPage {
   BurgerKingRestaurantsPage({super.key})
       : super(
           FastfoodInfo(
-            BurgerKingRepository(),
+            BurgerkingRepository(),
             'assets/svg/burgerking_logo.svg',
             'assets/png/burgerking_placemark.png',
             'assets/png/burgerking_placemark_without_logo.png',
