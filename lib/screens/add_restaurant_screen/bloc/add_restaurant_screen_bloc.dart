@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:luncher/repositories/fastfood_repository/fastfood_repository.dart';
@@ -16,6 +17,7 @@ class AddRestaurantScreenBloc
         emit(AddRestaurantScreenLoaded(
             await restaurantRepository.getRestaurants()));
       } catch (exception) {
+        debugPrint(exception.toString());
         emit(AddRestaurantScreenFailure(exception));
       }
     });

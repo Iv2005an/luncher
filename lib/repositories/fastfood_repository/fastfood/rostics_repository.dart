@@ -1,33 +1,34 @@
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kfc_russia_api/kfc_russia_api.dart';
 
+import 'package:luncher/app/hive_config/hive_fastfood_config/hive_rostics_config.dart';
 import '../fastfood_repository.dart';
 
-class RosticsRepository extends AbstractFastfoodRepository {
+class RosticsRepository implements AbstractFastfoodRepository {
   @override
-  Future<List<AbstractRestaurantModel>> getActualRestaurants() {
-    // TODO: implement getActualRestaurants
-    return getRestaurantsFromApi();
+  Future<List<AbstractRestaurantModel>> getRestaurants() async {
+    final restaurantBox =
+        Hive.box<RosticsRestaurantModel>(HiveRosticsConfig.restaurantBoxName);
+    if (restaurantBox.isEmpty) {
+      final restaurantMap = {
+        for (RosticsRestaurantModel restaurant
+            in await _getRestaurantsFromApi())
+          restaurant.id: restaurant
+      };
+      restaurantBox.putAll(restaurantMap);
+    }
+    return restaurantBox.values.toList();
   }
 
-  @override
-  Future<List<AbstractRestaurantModel>> getRestaurantsFromApi() async {
+  Future<List<RosticsRestaurantModel>> _getRestaurantsFromApi() async {
     final apiResponse = await KFC.getRestaurants();
     final rawData = apiResponse.data as Map<String, dynamic>;
     final rawRestaurants = rawData['searchResults'] as List;
     List<RosticsRestaurantModel> restaurants = [];
     rawRestaurants
-        .map(
-          (rawRestaurant) => restaurants.add(
-            RosticsRestaurantModel.fromJson(rawRestaurant['storePublic']),
-          ),
-        )
+        .map((rawRestaurant) => restaurants
+            .add(RosticsRestaurantModel.fromJson(rawRestaurant['storePublic'])))
         .toList();
     return restaurants;
-  }
-
-  @override
-  Future<List<AbstractRestaurantModel>> getRestaurantsFromLocal() {
-    // TODO: implement getRestaurantsFromLocal
-    throw UnimplementedError();
   }
 }

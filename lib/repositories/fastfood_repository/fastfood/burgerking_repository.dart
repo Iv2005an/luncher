@@ -1,16 +1,26 @@
 import 'package:burger_king_russia_api/burger_king_russia_api.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+import 'package:luncher/app/hive_config/hive_fastfood_config/hive_burgerking_config.dart';
 import '../fastfood_repository.dart';
 
-class BurgerkingRepository extends AbstractFastfoodRepository {
+class BurgerkingRepository implements AbstractFastfoodRepository {
   @override
-  Future<List<AbstractRestaurantModel>> getActualRestaurants() {
-    // TODO: implement getActualRestaurants
-    return getRestaurantsFromApi();
+  Future<List<AbstractRestaurantModel>> getRestaurants() async {
+    final restaurantBox = Hive.box<BurgerkingRestaurantModel>(
+        HiveBurgerkingConfig.restaurantBoxName);
+    if (restaurantBox.isEmpty) {
+      final restaurantMap = {
+        for (BurgerkingRestaurantModel restaurant
+            in await _getRestaurantsFromApi())
+          restaurant.id: restaurant
+      };
+      restaurantBox.putAll(restaurantMap);
+    }
+    return restaurantBox.values.toList();
   }
 
-  @override
-  Future<List<AbstractRestaurantModel>> getRestaurantsFromApi() async {
+  Future<List<BurgerkingRestaurantModel>> _getRestaurantsFromApi() async {
     final apiResponse = await BK.getRestaurants();
     final rawData = apiResponse.data as Map<String, dynamic>;
     final rawRestaurants = rawData['response']['list'] as List;
@@ -20,11 +30,5 @@ class BurgerkingRepository extends AbstractFastfoodRepository {
             restaurants.add(BurgerkingRestaurantModel.fromJson(rawRestaurant)))
         .toList();
     return restaurants;
-  }
-
-  @override
-  Future<List<AbstractRestaurantModel>> getRestaurantsFromLocal() {
-    // TODO: implement getRestaurantsFromLocal
-    throw UnimplementedError();
   }
 }
