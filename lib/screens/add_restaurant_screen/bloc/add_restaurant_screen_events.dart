@@ -1,5 +1,5 @@
 part of 'add_restaurant_screen_bloc.dart';
 
-class AddRestaurantEvent {}
+abstract interface class AddRestaurantEvent {}
 
-class LoadRestaurants extends AddRestaurantEvent {}
+class LoadRestaurants implements AddRestaurantEvent {}
