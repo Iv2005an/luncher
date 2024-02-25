@@ -16,8 +16,8 @@ class AddRestaurantScreenBloc
       try {
         emit(AddRestaurantScreenLoaded(
             await restaurantRepository.getRestaurants()));
-      } catch (exception) {
-        debugPrint(exception.toString());
+      } catch (exception, stackTrace) {
+        debugPrint('${exception.toString()}\n${stackTrace.toString()}');
         emit(AddRestaurantScreenFailure(exception));
       }
     });
