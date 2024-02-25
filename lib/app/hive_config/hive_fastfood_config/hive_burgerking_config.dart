@@ -1,7 +1,16 @@
-class HiveBurgerkingConfig {
-  static get restaurantBoxName => _getBoxName('restaurants');
+import 'package:hive_flutter/hive_flutter.dart';
 
-  static const _fastfoodName = 'burgerking';
-  static String _getBoxName(String modelsName) =>
-      '${_fastfoodName}_${modelsName}_box';
+import 'package:luncher/repositories/fastfood_repository/models/burgerking/burgerking_restaurant_model.dart';
+import 'hive_fastfood_config.dart';
+
+class HiveBurgerkingConfig {
+  static const fastfoodName = 'burgerking';
+
+  static void init() {
+    Hive.registerAdapter(BurgerkingRestaurantModelAdapter());
+  }
+
+  static Future<Box<BurgerkingRestaurantModel>> getRestaurantsBox() async =>
+      await HiveFastfoodConfig.getRestaurantBox<BurgerkingRestaurantModel>(
+          fastfoodName);
 }

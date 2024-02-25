@@ -1,4 +1,3 @@
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kfc_russia_api/kfc_russia_api.dart';
 
 import 'package:luncher/app/hive_config/hive_fastfood_config/hive_rostics_config.dart';
@@ -7,8 +6,7 @@ import '../fastfood_repository.dart';
 class RosticsRepository implements AbstractFastfoodRepository {
   @override
   Future<List<AbstractRestaurantModel>> getRestaurants() async {
-    final restaurantBox =
-        Hive.box<RosticsRestaurantModel>(HiveRosticsConfig.restaurantBoxName);
+    final restaurantBox = await HiveRosticsConfig.getRestaurantsBox();
     if (restaurantBox.isEmpty) {
       final restaurantMap = {
         for (RosticsRestaurantModel restaurant

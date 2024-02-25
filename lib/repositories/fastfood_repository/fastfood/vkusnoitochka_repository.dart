@@ -1,4 +1,3 @@
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vkusnoitochka_api/vkusnoitochka_api.dart';
 
 import 'package:luncher/app/hive_config/hive_fastfood_config/hive_vkusnoitochka_config.dart';
@@ -7,8 +6,7 @@ import '../fastfood_repository.dart';
 class VkusnoitochkaRepository implements AbstractFastfoodRepository {
   @override
   Future<List<AbstractRestaurantModel>> getRestaurants() async {
-    final restaurantBox = Hive.box<VkusnoitochkaRestaurantModel>(
-        HiveVkusnoitochkaConfig.restaurantBoxName);
+    final restaurantBox = await HiveVkusnoitochkaConfig.getRestaurantsBox();
     if (restaurantBox.isEmpty) {
       final restaurantMap = {
         for (VkusnoitochkaRestaurantModel restaurant

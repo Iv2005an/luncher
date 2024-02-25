@@ -1,5 +1,4 @@
 import 'package:burger_king_russia_api/burger_king_russia_api.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:luncher/app/hive_config/hive_fastfood_config/hive_burgerking_config.dart';
 import '../fastfood_repository.dart';
@@ -7,8 +6,7 @@ import '../fastfood_repository.dart';
 class BurgerkingRepository implements AbstractFastfoodRepository {
   @override
   Future<List<AbstractRestaurantModel>> getRestaurants() async {
-    final restaurantBox = Hive.box<BurgerkingRestaurantModel>(
-        HiveBurgerkingConfig.restaurantBoxName);
+    final restaurantBox = await HiveBurgerkingConfig.getRestaurantsBox();
     if (restaurantBox.isEmpty) {
       final restaurantMap = {
         for (BurgerkingRestaurantModel restaurant

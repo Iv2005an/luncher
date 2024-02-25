@@ -1,7 +1,16 @@
-class HiveRosticsConfig {
-  static get restaurantBoxName => _getBoxName('restaurants');
+import 'package:hive_flutter/hive_flutter.dart';
 
-  static const _fastfoodName = 'rostics';
-  static String _getBoxName(String modelsName) =>
-      '${_fastfoodName}_${modelsName}_box';
+import 'package:luncher/repositories/fastfood_repository/models/rostics/rostics_restaurant_model.dart';
+import 'hive_fastfood_config.dart';
+
+class HiveRosticsConfig {
+  static const fastfoodName = 'rostics';
+
+  static void init() {
+    Hive.registerAdapter(RosticsRestaurantModelAdapter());
+  }
+
+  static Future<Box<RosticsRestaurantModel>> getRestaurantsBox() async =>
+      await HiveFastfoodConfig.getRestaurantBox<RosticsRestaurantModel>(
+          fastfoodName);
 }
