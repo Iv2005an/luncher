@@ -41,3 +41,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# ApiKeys for IOS platform
+/ios/Flutter/ApiKeys.xcconfig

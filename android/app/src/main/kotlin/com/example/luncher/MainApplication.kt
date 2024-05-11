@@ -7,6 +7,6 @@ import com.yandex.mapkit.MapKitFactory
 class MainApplication: Application() {
   override fun onCreate() {
     super.onCreate()
-    MapKitFactory.setApiKey(BuildConfig.MAPKIT_API_KEY) // Your generated API key
+    MapKitFactory.setApiKey(BuildConfig.YANDEX_MAPKIT_API_KEY)
   }
 }

@@ -22,7 +22,7 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-def mapkitApiKey = localProperties.getProperty('MAPKIT_API_KEY')
+def mapkitApiKey = localProperties.getProperty('YANDEX_MAPKIT_API_KEY')
 if (mapkitApiKey == null) {
     mapkitApiKey = ''
 }
@@ -54,7 +54,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        buildConfigField "String", "MAPKIT_API_KEY", "\"${mapkitApiKey}\""
+        buildConfigField "String", "YANDEX_MAPKIT_API_KEY", "\"${mapkitApiKey}\""
     }
 
     buildTypes {
@@ -71,5 +71,5 @@ flutter {
 }
 
 dependencies {
-    implementation 'com.yandex.android:maps.mobile:4.4.0-full'
+    implementation 'com.yandex.android:maps.mobile:4.5.1-lite'
 }
