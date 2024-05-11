@@ -22,6 +22,7 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
   late final AddRestaurantScreenBloc _addRestaurantBloc;
   final _mapKey = GlobalKey();
   late final YandexMapController _mapController;
+  final CameraBounds _cameraBounds = const CameraBounds(minZoom: 4);
   late double _mapZoom;
 
   Future<void> _moveToUserCameraPosition() async {
@@ -29,8 +30,7 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
     if (userCameraPosition != null) {
       _mapController.moveCamera(
           CameraUpdate.newCameraPosition(
-            userCameraPosition.copyWith(
-                zoom: await _mapController.getMaxZoom() - 7),
+            userCameraPosition.copyWith(zoom: _cameraBounds.maxZoom - 7),
           ),
           animation: const MapAnimation());
     }
@@ -76,9 +76,8 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                       Theme.of(context).brightness == Brightness.dark,
                   mode2DEnabled: true,
                   fastTapEnabled: true,
+                  cameraBounds: _cameraBounds,
                   onMapCreated: (controller) async {
-                    controller.setMinZoom(zoom: 3);
-
                     if (await Permission.location.request().isGranted) {
                       controller.toggleUserLayer(
                         visible: true,
