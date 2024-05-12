@@ -313,10 +313,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "9e0f7d1a3e7dc5010903e330fbc5497872c4c3cf6626381d69083cc1d5113c1e"
+      sha256: "81f94e16d7063b60f0da3a79f872e140d6518f306749303bf981abd7d6b46734"
       url: "https://pub.dev"
     source: hosted
-    version: "14.0.2"
+    version: "14.1.0"
   graphs:
     dependency: transitive
     description:
@@ -822,10 +822,10 @@ packages:
     dependency: "direct main"
     description:
       name: vkusnoitochka_api
-      sha256: e4126a891b6a2bc3a9fcaa78ee8f9543586520713f57b367120462c7a721c0fc
+      sha256: d8389888f98ec16abe502b2a9231e725bbd449398438d0a34241a778fbf0c8af
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   vm_service:
     dependency: transitive
     description:
@@ -899,5 +899,5 @@ packages:
     source: hosted
     version: "4.0.2"
 sdks:
-  dart: ">=3.3.0 <4.0.0"
+  dart: ">=3.3.4 <4.0.0"
   flutter: ">=3.16.6"
