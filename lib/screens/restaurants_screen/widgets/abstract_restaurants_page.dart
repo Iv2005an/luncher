@@ -59,40 +59,7 @@ class _AbstractRestaurantPageState extends State<AbstractRestaurantPage> {
           ));
         }
         if (state is RestaurantsScreenEmpty) {
-          page = Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(
-                    widget._fastfoodInfo.assetLogo,
-                    height: 48,
-                    colorFilter: widget._fastfoodInfo.monochromeAssetLogo
-                        ? ColorFilter.mode(
-                            Theme.of(context).colorScheme.onSurface,
-                            BlendMode.srcIn)
-                        : null,
-                  ),
-                ),
-                page = Text(S.of(context).noRestaurant),
-                Row(
-                  children: [
-                    Expanded(
-                        child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () => context.push(
-                            '/restaurants/addRestaurant',
-                            extra: widget._fastfoodInfo),
-                        child: Text(
-                          S.of(context).addRestaurant,
-                          style: TextStyle(color: theme.colorScheme.onSurface),
-                        ),
-                      ),
-                    ))
-                  ],
-                )
-              ]);
+          page = Text(S.of(context).noRestaurant);
         }
         return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
