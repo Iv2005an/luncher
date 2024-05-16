@@ -23,14 +23,13 @@ class Launcher extends StatelessWidget {
           style: theme.textTheme.headlineSmall,
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
-          systemNavigationBarColor:
-              theme.colorScheme.secondaryContainer, // Navigation bar
+          systemNavigationBarColor: theme.colorScheme.secondaryContainer,
         ),
-        actions: [
-          IconButton(
-              onPressed: () => context.push('/settings'),
-              icon: const Icon(Icons.settings))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () => context.push('/settings'),
+        //       icon: const Icon(Icons.settings))
+        // ],
       ),
       body: _statefulNavigationShell,
       bottomNavigationBar: NavigationBar(
@@ -43,10 +42,10 @@ class Launcher extends StatelessWidget {
                 icon: const Icon(Icons.food_bank_outlined),
                 selectedIcon: const Icon(Icons.food_bank),
                 label: pagesNames[0]),
-            NavigationDestination(
-                icon: const Icon(Icons.fastfood_outlined),
-                selectedIcon: const Icon(Icons.fastfood),
-                label: pagesNames[1]),
+            // NavigationDestination(
+            //     icon: const Icon(Icons.fastfood_outlined),
+            //     selectedIcon: const Icon(Icons.fastfood),
+            //     label: pagesNames[1]),
             NavigationDestination(
                 icon: const Icon(Icons.summarize_outlined),
                 selectedIcon: const Icon(Icons.summarize),

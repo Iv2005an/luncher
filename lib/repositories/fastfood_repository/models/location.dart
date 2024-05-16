@@ -5,16 +5,13 @@ part 'location.g.dart';
 
 @HiveType(typeId: 0)
 class Location extends Equatable {
-  Location(num longitude, num latitude) {
-    this.longitude = longitude.toDouble();
-    this.latitude = latitude.toDouble();
-  }
+  const Location(this.longitude, this.latitude);
 
   @HiveField(0)
-  late final double longitude;
+  final num longitude;
 
   @HiveField(1)
-  late final double latitude;
+  final num latitude;
 
   @override
   List<Object?> get props => [longitude, latitude];

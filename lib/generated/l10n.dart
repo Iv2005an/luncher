@@ -179,6 +179,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Deleting`
+  String get deleting {
+    return Intl.message(
+      'Deleting',
+      name: 'deleting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete restaurant?`
+  String get deleteRestaurant {
+    return Intl.message(
+      'Delete restaurant?',
+      name: 'deleteRestaurant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No restaurant`
+  String get noRestaurant {
+    return Intl.message(
+      'No restaurant',
+      name: 'noRestaurant',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

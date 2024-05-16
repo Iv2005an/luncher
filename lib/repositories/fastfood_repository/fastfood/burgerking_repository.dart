@@ -1,21 +1,35 @@
-import 'package:burger_king_russia_api/burger_king_russia_api.dart';
-
-import 'package:luncher/app/hive_config/hive_fastfood_config/hive_burgerking_config.dart';
-import '../fastfood_repository.dart';
+part of 'fastfood.dart';
 
 class BurgerkingRepository extends AbstractFastfoodRepository {
   @override
-  Future<List<AbstractRestaurantModel>> getRestaurants() async {
-    final restaurantsBox = await HiveBurgerkingConfig.getRestaurantsBox();
-    if (restaurantsBox.isEmpty) {
-      saveRestaurantsToLocal(
-        restaurantsBox,
-        await getRestaurantsFromApi(
-          (await BK.getRestaurants()).data['response']['list'] as List,
-          (rawRestaurant) => BurgerkingRestaurantModel.fromJson(rawRestaurant),
-        ),
-      );
-    }
-    return getRestaurantsFromLocal(restaurantsBox);
+  // TODO: implement restaurants
+  Future<List<AbstractRestaurantModel>> get allRestaurants =>
+      throw UnimplementedError();
+
+  @override
+  Future<List<AbstractRestaurantModel>> get restaurants async =>
+      (await HiveBurgerkingConfig().getRestaurantsBox()).values.toList();
+
+  @override
+  Future addRestaurant(AbstractRestaurantModel restaurant) async {
+    (await HiveBurgerkingConfig().getRestaurantsBox())
+        .put(restaurant.id, restaurant as BurgerkingRestaurantModel);
+  }
+
+  @override
+  Future<void> deleteRestaurant(AbstractRestaurantModel restaurant) async {
+    (await HiveBurgerkingConfig().getRestaurantsBox()).delete(restaurant.id);
+  }
+
+  @override
+  Future<String?> getSelectedRestaurant() {
+    // TODO: implement getSelectedRestaurant
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> setSelectedRestaurant(String restaurantId) {
+    // TODO: implement setSelectedRestaurant
+    throw UnimplementedError();
   }
 }

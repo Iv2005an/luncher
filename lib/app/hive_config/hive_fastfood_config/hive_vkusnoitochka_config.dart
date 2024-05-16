@@ -1,16 +1,16 @@
-import 'package:hive_flutter/hive_flutter.dart';
+part of 'hive_abstract_fastfood_config.dart';
 
-import 'package:luncher/repositories/fastfood_repository/models/vkusnoitochka/vkusnoitochka_restaurant_model.dart';
-import 'hive_fastfood_config.dart';
-
-class HiveVkusnoitochkaConfig {
+class HiveVkusnoitochkaConfig extends AbstractHiveFastfoodConfig {
   static const fastfoodName = 'vkusnoitochka';
 
   static void init() {
     Hive.registerAdapter(VkusnoitochkaRestaurantModelAdapter());
   }
 
-  static Future<Box<VkusnoitochkaRestaurantModel>> getRestaurantsBox() async =>
-      await HiveFastfoodConfig.getRestaurantBox<VkusnoitochkaRestaurantModel>(
-          fastfoodName);
+  @override
+  Future<Box<VkusnoitochkaRestaurantModel>> getAllRestaurantsBox() async =>
+      await AbstractHiveFastfoodConfig._getAllRestaurantsBox(fastfoodName);
+  @override
+  Future<Box<VkusnoitochkaRestaurantModel>> getRestaurantsBox() async =>
+      await AbstractHiveFastfoodConfig._getRestaurantsBox(fastfoodName);
 }

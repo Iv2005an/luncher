@@ -5,10 +5,11 @@ import '../models.dart';
 
 part 'vkusnoitochka_restaurant_model.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 4)
 @JsonSerializable(createToJson: false)
 class VkusnoitochkaRestaurantModel extends AbstractRestaurantModel {
-  const VkusnoitochkaRestaurantModel(this.id, this.address, this.location);
+  const VkusnoitochkaRestaurantModel(
+      this.id, this.address, this.location, this.metroList);
 
   factory VkusnoitochkaRestaurantModel.fromJson(Map<String, dynamic> json) =>
       _$VkusnoitochkaRestaurantModelFromJson(json);
@@ -21,11 +22,23 @@ class VkusnoitochkaRestaurantModel extends AbstractRestaurantModel {
   @override
   final String address;
 
-  @HiveField(2)
   @JsonKey(fromJson: _locationFromJson)
+  @HiveField(2)
   @override
   final Location location;
+  static Location _locationFromJson(Map<String, dynamic> rawLocation) =>
+      Location(rawLocation['lon'], rawLocation['lat']);
 
-  static Location _locationFromJson(Map<String, dynamic> location) =>
-      Location(location['lon'], location['lat']);
+  @JsonKey(fromJson: _metroListFromJson)
+  @HiveField(3)
+  @override
+  final List<Metro> metroList;
+  static List<Metro> _metroListFromJson(List rawMetroList) => [
+        for (var rawMetro in rawMetroList)
+          Metro(
+              rawMetro['name'],
+              int.parse('FF${(rawMetro['color'] as String).substring(1)}',
+                  radix: 16),
+              rawMetro['distance'])
+      ];
 }

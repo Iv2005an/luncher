@@ -1,23 +1,35 @@
-import 'package:kfc_russia_api/kfc_russia_api.dart';
-
-import 'package:luncher/app/hive_config/hive_fastfood_config/hive_rostics_config.dart';
-import '../fastfood_repository.dart';
+part of 'fastfood.dart';
 
 class RosticsRepository extends AbstractFastfoodRepository {
   @override
-  Future<List<RosticsRestaurantModel>> getRestaurants() async {
-    final restaurantsBox = await HiveRosticsConfig.getRestaurantsBox();
-    if (restaurantsBox.isEmpty) {
-      saveRestaurantsToLocal(
-        restaurantsBox,
-        await getRestaurantsFromApi(
-          (await KFC.getRestaurants()).data['searchResults'] as List,
-          (rawRestaurant) => RosticsRestaurantModel.fromJson(
-            rawRestaurant['storePublic'],
-          ),
-        ),
-      );
-    }
-    return getRestaurantsFromLocal(restaurantsBox);
+  // TODO: implement restaurants
+  Future<List<AbstractRestaurantModel>> get allRestaurants =>
+      throw UnimplementedError();
+
+  @override
+  Future<List<AbstractRestaurantModel>> get restaurants async =>
+      (await HiveRosticsConfig().getRestaurantsBox()).values.toList();
+
+  @override
+  Future addRestaurant(AbstractRestaurantModel restaurant) async {
+    (await HiveRosticsConfig().getRestaurantsBox())
+        .put(restaurant.id, restaurant as RosticsRestaurantModel);
+  }
+
+  @override
+  Future<void> deleteRestaurant(AbstractRestaurantModel restaurant) async {
+    (await HiveRosticsConfig().getRestaurantsBox()).delete(restaurant.id);
+  }
+
+  @override
+  Future<String?> getSelectedRestaurant() {
+    // TODO: implement getSelectedRestaurant
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> setSelectedRestaurant(String restaurantId) {
+    // TODO: implement setSelectedRestaurant
+    throw UnimplementedError();
   }
 }

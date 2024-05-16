@@ -27,7 +27,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("Адрес: "),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
+        "deleteRestaurant":
+            MessageLookupByLibrary.simpleMessage("Удалить ресторан?"),
+        "deleting": MessageLookupByLibrary.simpleMessage("Удаление"),
         "metroStations": MessageLookupByLibrary.simpleMessage("Станции метро:"),
+        "noRestaurant":
+            MessageLookupByLibrary.simpleMessage("Рестораны отсутствуют"),
         "offers": MessageLookupByLibrary.simpleMessage("Предложения"),
         "restaurants": MessageLookupByLibrary.simpleMessage("Рестораны"),
         "services": MessageLookupByLibrary.simpleMessage("Услуги:"),

@@ -11,5 +11,8 @@
   "cancel": "Отмена",
   "uploadingInformationAboutRestaurants": "Загрузка информации о ресторанах",
   "somethingWentWrong": "Что-то пошло не так...",
-  "tryAgain": "Попробовать снова"
+  "tryAgain": "Попробовать снова",
+  "deleting": "Удаление",
+  "deleteRestaurant": "Удалить ресторан?",
+  "noRestaurant": "Рестораны отсутствуют"
 }

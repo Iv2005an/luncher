@@ -5,7 +5,7 @@ import '../models.dart';
 
 part 'rostics_restaurant_model.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 3)
 @JsonSerializable(createToJson: false)
 class RosticsRestaurantModel extends AbstractRestaurantModel {
   const RosticsRestaurantModel(this.id, this.address, this.location);
@@ -39,4 +39,8 @@ class RosticsRestaurantModel extends AbstractRestaurantModel {
     final location = coordinates['geometry']['coordinates'] as List;
     return Location(location[1], location[0]);
   }
+
+  @override
+  // TODO: implement metro
+  List<Metro> get metroList => throw UnimplementedError();
 }

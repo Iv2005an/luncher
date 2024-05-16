@@ -9,7 +9,7 @@ part of 'rostics_restaurant_model.dart';
 class RosticsRestaurantModelAdapter
     extends TypeAdapter<RosticsRestaurantModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
   RosticsRestaurantModel read(BinaryReader reader) {

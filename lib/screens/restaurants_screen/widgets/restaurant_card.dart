@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:luncher/generated/l10n.dart';
+import 'package:luncher/repositories/fastfood_repository/models/models.dart';
+import 'package:luncher/screens/restaurants_screen/bloc/restaurants_screen_bloc.dart';
 
 class RestaurantCard extends StatelessWidget {
-  const RestaurantCard({super.key});
+  const RestaurantCard(
+    this._restaurantsScreenBloc,
+    this._restaurant, {
+    super.key,
+  });
+  final RestaurantsScreenBloc _restaurantsScreenBloc;
+  final AbstractRestaurantModel _restaurant;
 
   @override
   Widget build(BuildContext context) {
@@ -17,91 +25,18 @@ class RestaurantCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RichText(
-                  text: TextSpan(
-                    text: S.of(context).address,
-                    style: theme.textTheme.titleLarge,
-                    children: [
-                      TextSpan(
-                          text:
-                              'пр Театральный 5, ТЦ Центральный Детский Мир 6 этаж',
-                          style: theme.textTheme.bodyLarge)
-                    ],
-                  ),
-                ),
-                const Divider(),
-                Text(
-                  S.of(context).metroStations,
-                  style: theme.textTheme.titleLarge,
-                ),
-                const Wrap(
-                  spacing: 8,
+                Text(_restaurant.address, style: theme.textTheme.headlineSmall),
+                ListView(
+                  shrinkWrap: true,
                   children: [
-                    Chip(
-                      avatar: CircleAvatar(
-                        backgroundColor: Colors.purple,
-                      ),
-                      label: Text('Выхино'),
-                    ),
-                    Chip(
-                      avatar: CircleAvatar(
-                        backgroundColor: Colors.pink,
-                      ),
-                      label: Text('Косино'),
-                    ),
-                    Chip(
-                      avatar: CircleAvatar(
-                        backgroundColor: Colors.purple,
-                      ),
-                      label: Text('Лермонтовский проспект'),
-                    ),
-                    Chip(
-                      avatar: CircleAvatar(
-                        backgroundColor: Colors.grey,
-                      ),
-                      label: Text('Бульвар Дмитрия Донского'),
-                    ),
-                  ],
-                ),
-                const Divider(),
-                Text(
-                  'Открыто до 22:00',
-                  style:
-                      theme.textTheme.titleLarge!.copyWith(color: Colors.green),
-                ),
-                const Divider(),
-                Text(S.of(context).services, style: theme.textTheme.titleLarge),
-                Wrap(
-                  spacing: 8,
-                  children: [
-                    Chip(
-                      avatar: Icon(
-                        Icons.access_time_outlined,
-                        color: theme.colorScheme.onBackground,
-                      ),
-                      label: const Text('Открыто сейчас'),
-                    ),
-                    Chip(
-                      avatar: Icon(
-                        Icons.directions_car_outlined,
-                        color: theme.colorScheme.onBackground,
-                      ),
-                      label: const Text('Авто'),
-                    ),
-                    Chip(
-                      avatar: Icon(
-                        Icons.local_cafe_outlined,
-                        color: theme.colorScheme.onBackground,
-                      ),
-                      label: const Text('Завтрак'),
-                    ),
-                    Chip(
-                      avatar: Icon(
-                        Icons.local_parking_outlined,
-                        color: theme.colorScheme.onBackground,
-                      ),
-                      label: const Text('Вынос на парковку'),
-                    ),
+                    for (var metro in _restaurant.metroList)
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Color(metro.color),
+                        ),
+                        title: Text(metro.name),
+                        subtitle: Text('${metro.distance.toInt()} м'),
+                      )
                   ],
                 ),
               ],
@@ -113,15 +48,19 @@ class RestaurantCard extends StatelessWidget {
                     onPressed: () => showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: const Text('AlertDialog Title'),
-                        content: const Text('AlertDialog description'),
+                        title: Text(S.of(context).deleting),
+                        content: Text(S.of(context).deleteRestaurant),
                         actions: <Widget>[
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () => Navigator.pop(context),
                             child: Text(S.of(context).cancel),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                              _restaurantsScreenBloc
+                                  .add(DeleteRestaurant(_restaurant));
+                            },
                             child: Text(S.of(context).delete),
                           ),
                         ],

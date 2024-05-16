@@ -15,8 +15,8 @@ class _RestaurantsScreenState extends State<RestaurantsScreen> {
     return PageView(
       scrollDirection: Axis.vertical,
       children: [
-        BurgerKingRestaurantsPage(),
-        RosticsRestaurantsCard(),
+        // BurgerKingRestaurantsPage(),
+        // RosticsRestaurantsCard(),
         VkusnoitochkaRestaurantsPage(),
       ],
     );

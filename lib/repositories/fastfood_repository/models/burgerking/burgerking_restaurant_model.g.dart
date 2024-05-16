@@ -9,7 +9,7 @@ part of 'burgerking_restaurant_model.dart';
 class BurgerkingRestaurantModelAdapter
     extends TypeAdapter<BurgerkingRestaurantModel> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   BurgerkingRestaurantModel read(BinaryReader reader) {
@@ -54,7 +54,7 @@ class BurgerkingRestaurantModelAdapter
 BurgerkingRestaurantModel _$BurgerkingRestaurantModelFromJson(
         Map<String, dynamic> json) =>
     BurgerkingRestaurantModel(
-      BurgerkingRestaurantModel._idFromJson(json['id'] as int),
+      BurgerkingRestaurantModel._idFromJson((json['id'] as num).toInt()),
       json['address'] as String,
       BurgerkingRestaurantModel._locationFromJson(
           BurgerkingRestaurantModel._readLocationFromJson(json, 'location')

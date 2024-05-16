@@ -1,16 +1,16 @@
-import 'package:hive_flutter/hive_flutter.dart';
+part of 'hive_abstract_fastfood_config.dart';
 
-import 'package:luncher/repositories/fastfood_repository/models/rostics/rostics_restaurant_model.dart';
-import 'hive_fastfood_config.dart';
-
-class HiveRosticsConfig {
+class HiveRosticsConfig implements AbstractHiveFastfoodConfig {
   static const fastfoodName = 'rostics';
 
   static void init() {
     Hive.registerAdapter(RosticsRestaurantModelAdapter());
   }
 
-  static Future<Box<RosticsRestaurantModel>> getRestaurantsBox() async =>
-      await HiveFastfoodConfig.getRestaurantBox<RosticsRestaurantModel>(
-          fastfoodName);
+  @override
+  Future<Box<RosticsRestaurantModel>> getAllRestaurantsBox() async =>
+      await AbstractHiveFastfoodConfig._getAllRestaurantsBox(fastfoodName);
+  @override
+  Future<Box<RosticsRestaurantModel>> getRestaurantsBox() async =>
+      await AbstractHiveFastfoodConfig._getRestaurantsBox(fastfoodName);
 }

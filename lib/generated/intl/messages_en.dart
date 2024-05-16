@@ -26,8 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("Address: "),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteRestaurant":
+            MessageLookupByLibrary.simpleMessage("Delete restaurant?"),
+        "deleting": MessageLookupByLibrary.simpleMessage("Deleting"),
         "metroStations":
             MessageLookupByLibrary.simpleMessage("Metro stations:"),
+        "noRestaurant": MessageLookupByLibrary.simpleMessage("No restaurant"),
         "offers": MessageLookupByLibrary.simpleMessage("Offers"),
         "restaurants": MessageLookupByLibrary.simpleMessage("Restaurants"),
         "services": MessageLookupByLibrary.simpleMessage("Services:"),

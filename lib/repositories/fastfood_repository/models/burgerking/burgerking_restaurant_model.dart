@@ -5,7 +5,7 @@ import '../models.dart';
 
 part 'burgerking_restaurant_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 2)
 @JsonSerializable(createToJson: false)
 class BurgerkingRestaurantModel extends AbstractRestaurantModel {
   const BurgerkingRestaurantModel(this.id, this.address, this.location);
@@ -35,4 +35,8 @@ class BurgerkingRestaurantModel extends AbstractRestaurantModel {
 
   static Location _locationFromJson(Map<String, dynamic> location) =>
       Location(location['longitude'], location['latitude']);
+
+  @override
+  // TODO: implement metro
+  List<Metro> get metroList => throw UnimplementedError();
 }

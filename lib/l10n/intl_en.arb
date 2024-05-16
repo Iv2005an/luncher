@@ -11,5 +11,8 @@
   "cancel": "Cancel",
   "uploadingInformationAboutRestaurants": "Uploading information about restaurants",
   "somethingWentWrong": "Something went wrong...",
-  "tryAgain": "Try again"
+  "tryAgain": "Try again",
+  "deleting": "Deleting",
+  "deleteRestaurant": "Delete restaurant?",
+  "noRestaurant": "No restaurant"
 }
