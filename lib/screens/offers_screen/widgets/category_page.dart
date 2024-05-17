@@ -35,7 +35,7 @@ class CategoryPage extends StatelessWidget {
                       ListTile(
                         title: Text(categoryProduct.name),
                         subtitle: Text(
-                            'Цена: ${categoryProduct.price} Ккал: ${categoryProduct.caloriesCount} Руб/ккал:${(categoryProduct.price / categoryProduct.caloriesCount).isNaN ? 0 : (categoryProduct.price / categoryProduct.caloriesCount)}'),
+                            'Цена: ${categoryProduct.price} Ккал: ${categoryProduct.caloriesCount} Руб/ккал:${(categoryProduct.price / categoryProduct.caloriesCount).toStringAsFixed(2)}'),
                       )
                   ],
                 ),

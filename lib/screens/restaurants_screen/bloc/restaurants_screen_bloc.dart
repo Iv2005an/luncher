@@ -19,7 +19,7 @@ class RestaurantsScreenBloc
           emit(RestaurantsScreenEmpty());
         } else {
           final selectedRestaurant =
-              await restaurantsRepository.getSelectedRestaurant();
+              await restaurantsRepository.getSelectedRestaurantId();
           int selectedRestaurantId = restaurants
               .indexWhere((restaurant) => restaurant.id == selectedRestaurant);
           if (selectedRestaurantId == -1) {

@@ -16,7 +16,8 @@ abstract class AbstractFastfoodRepository {
   Future<List<AbstractRestaurantModel>> get restaurants;
   Future<void> addRestaurant(AbstractRestaurantModel restaurant);
   Future<void> deleteRestaurant(AbstractRestaurantModel restaurant);
-  Future<String?> getSelectedRestaurant();
+  Future<AbstractRestaurantModel?> getSelectedRestaurant();
+  Future<String?> getSelectedRestaurantId();
   Future<void> setSelectedRestaurant(String restaurantId);
   Future<List<AbstractCategoryModel>> getCategories();
   Future<Map<String, List<AbstractProductModel>>> getCategoriesProducts();
@@ -57,10 +58,11 @@ abstract class AbstractFastfoodRepository {
       (await AbstractHiveFastfoodConfig.getUpdateTimeBox(fastfoodName))
           .put('products', updateTime);
 
-  Future<String?> _getSelectedRestaurant(String fastfoodName) async =>
+  Future<String> _getSelectedRestaurantId(String fastfoodName) async =>
       (await AbstractHiveFastfoodConfig.getSelectedRestaurantBox())
-          .get(fastfoodName);
-  Future<void> _setSelectedRestaurant(
+          .get(fastfoodName) ??
+      '';
+  Future<void> _setSelectedRestaurantId(
           String fastfoodName, String restaurantId) async =>
       (await AbstractHiveFastfoodConfig.getSelectedRestaurantBox())
           .put(fastfoodName, restaurantId);

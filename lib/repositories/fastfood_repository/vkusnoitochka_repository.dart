@@ -59,12 +59,23 @@ class VkusnoitochkaRepository extends AbstractFastfoodRepository {
   }
 
   @override
-  Future<String?> getSelectedRestaurant() async =>
-      _getSelectedRestaurant(fastfoodName);
+  Future<AbstractRestaurantModel?> getSelectedRestaurant() async {
+    final selectedRestaurantId = await getSelectedRestaurantId();
+    try {
+      return (await restaurants)
+          .firstWhere((element) => element.id == selectedRestaurantId);
+    } on StateError {
+      return null;
+    }
+  }
+
+  @override
+  Future<String?> getSelectedRestaurantId() async =>
+      _getSelectedRestaurantId(fastfoodName);
 
   @override
   Future<void> setSelectedRestaurant(String restaurantId) async {
-    _setSelectedRestaurant(fastfoodName, restaurantId);
+    _setSelectedRestaurantId(fastfoodName, restaurantId);
   }
 
   List<String> _getProductsIdFromCategory(
@@ -86,8 +97,9 @@ class VkusnoitochkaRepository extends AbstractFastfoodRepository {
 
   @override
   Future<List<AbstractCategoryModel>> getCategories() async {
-    final cityId = await getSelectedRestaurant();
-    if (cityId == null) return [];
+    final selectedRestaurant = await getSelectedRestaurant();
+    if (selectedRestaurant == null) return [];
+    final cityId = selectedRestaurant.city.id;
     // final categoriesUpdateTime = await _getCategoriesUpdateTime(fastfoodName);
     const categoriesUpdateTime = 0;
     final rawCategoriesData = (await VIT.getCatalog(
@@ -115,8 +127,9 @@ class VkusnoitochkaRepository extends AbstractFastfoodRepository {
   @override
   Future<Map<String, List<AbstractProductModel>>>
       getCategoriesProducts() async {
-    final cityId = await getSelectedRestaurant();
-    if (cityId == null) return {};
+    final selectedRestaurant = await getSelectedRestaurant();
+    if (selectedRestaurant == null) return {};
+    final cityId = selectedRestaurant.city.id;
     // final productsUpdateTime = await _getProductsUpdateTime(fastfoodName);
     const productsUpdateTime = 0;
     final rawProductsData = (await VIT.getProducts(
@@ -126,29 +139,35 @@ class VkusnoitochkaRepository extends AbstractFastfoodRepository {
     final rawProducts = rawProductsData['items'] as List;
     if (rawProducts.isNotEmpty) {
       final prices = (await VIT.getPrices(cityId)).data['items'] as List;
-      List<AbstractProductModel> products = [];
-      for (var rawProduct in rawProducts) {
-        rawProduct['price'] = prices.firstWhere(
-          (element) => element['product_id'] == rawProduct['productId'],
-          orElse: () => {'price': 0},
-        )['price'];
-        products.add(VkusnoitochkaProductModel.fromJson(rawProduct));
+      if (prices.isNotEmpty) {
+        List<AbstractProductModel> products = [];
+        for (var rawProduct in rawProducts) {
+          if (!rawProduct['deleted']) {
+            rawProduct['price'] = prices.firstWhere(
+              (element) => element['product_id'] == rawProduct['productId'],
+              orElse: () => {'price': 0},
+            )['price'];
+            products.add(VkusnoitochkaProductModel.fromJson(rawProduct));
+          }
+        }
+        productsBox
+            .putAll({for (var product in products) product.name: product});
+        await _setProductsUpdateTime(
+            fastfoodName, (rawProductsData['lastUpdated'] as int) + 1);
       }
-      productsBox.putAll({for (var product in products) product.name: product});
-      await _setProductsUpdateTime(
-          fastfoodName, (rawProductsData['lastUpdated'] as int) + 1);
+      final categories = await getCategories();
+      return {
+        for (var category in categories)
+          category.name: productsBox.values
+              .where((element) =>
+                  element.price != 0 &&
+                  element.caloriesCount != 0 &&
+                  category.productsIds.contains(element.id))
+              .toList()
+            ..sort((a, b) => (a.price / a.caloriesCount)
+                .compareTo(b.price / b.caloriesCount))
+      };
     }
-    final categories = await getCategories();
-    return {
-      for (var category in categories)
-        category.name: productsBox.values
-            .where((element) =>
-                element.price != 0 &&
-                element.caloriesCount != 0 &&
-                category.productsIds.contains(element.id))
-            .toList()
-          ..sort((a, b) =>
-              (a.price / a.caloriesCount).compareTo(b.price / b.caloriesCount))
-    };
+    return {};
   }
 }

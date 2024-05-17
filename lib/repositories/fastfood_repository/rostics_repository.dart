@@ -22,7 +22,7 @@ class RosticsRepository extends AbstractFastfoodRepository {
   }
 
   @override
-  Future<String?> getSelectedRestaurant() {
+  Future<String?> getSelectedRestaurantId() {
     // TODO: implement getSelectedRestaurant
     throw UnimplementedError();
   }
@@ -48,6 +48,12 @@ class RosticsRepository extends AbstractFastfoodRepository {
   @override
   Future<Map<String, List<AbstractProductModel>>> getCategoriesProducts() {
     // TODO: implement getProducts
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<AbstractRestaurantModel> getSelectedRestaurant() {
+    // TODO: implement getSelectedRestaurant
     throw UnimplementedError();
   }
 }
