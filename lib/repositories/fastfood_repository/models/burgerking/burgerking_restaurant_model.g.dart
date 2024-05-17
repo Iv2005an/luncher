@@ -9,7 +9,7 @@ part of 'burgerking_restaurant_model.dart';
 class BurgerkingRestaurantModelAdapter
     extends TypeAdapter<BurgerkingRestaurantModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
   BurgerkingRestaurantModel read(BinaryReader reader) {

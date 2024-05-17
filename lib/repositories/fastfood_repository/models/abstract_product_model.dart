@@ -2,11 +2,12 @@ import 'package:equatable/equatable.dart';
 
 abstract class AbstractProductModel extends Equatable {
   const AbstractProductModel();
+
   String get id;
   String get name;
-  int get calCount;
-  int get price;
+  double get caloriesCount;
+  double get price;
 
   @override
-  List<Object?> get props => [id, name, calCount, price];
+  List<Object?> get props => [id, name, caloriesCount, price];
 }

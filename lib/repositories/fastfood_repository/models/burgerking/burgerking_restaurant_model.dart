@@ -5,7 +5,7 @@ import '../models.dart';
 
 part 'burgerking_restaurant_model.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 3)
 @JsonSerializable(createToJson: false)
 class BurgerkingRestaurantModel extends AbstractRestaurantModel {
   const BurgerkingRestaurantModel(this.id, this.address, this.location);
@@ -19,6 +19,10 @@ class BurgerkingRestaurantModel extends AbstractRestaurantModel {
   final String id;
 
   static String _idFromJson(int id) => id.toString();
+
+  @override
+  // TODO: implement city
+  City get city => throw UnimplementedError();
 
   @HiveField(1)
   @override

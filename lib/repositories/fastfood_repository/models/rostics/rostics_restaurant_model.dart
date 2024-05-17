@@ -5,7 +5,7 @@ import '../models.dart';
 
 part 'rostics_restaurant_model.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 4)
 @JsonSerializable(createToJson: false)
 class RosticsRestaurantModel extends AbstractRestaurantModel {
   const RosticsRestaurantModel(this.id, this.address, this.location);
@@ -17,6 +17,10 @@ class RosticsRestaurantModel extends AbstractRestaurantModel {
   @JsonKey(name: 'storeId')
   @override
   final String id;
+
+  @override
+  // TODO: implement city
+  City get city => throw UnimplementedError();
 
   @HiveField(1)
   @JsonKey(readValue: _readAddressFromJson)

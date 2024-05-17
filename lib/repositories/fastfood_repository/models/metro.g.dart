@@ -8,7 +8,7 @@ part of 'metro.dart';
 
 class MetroAdapter extends TypeAdapter<Metro> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   Metro read(BinaryReader reader) {

@@ -7,7 +7,7 @@ import 'package:luncher/generated/l10n.dart';
 import 'package:luncher/screens/restaurants_screen/models/fastfood_info.dart';
 import 'package:luncher/screens/add_restaurants_screen/bloc/add_restaurants_screen_bloc.dart';
 import 'package:luncher/screens/add_restaurants_screen/icons/icons.dart';
-import 'widgets/loading_screen.dart';
+import '../widgets/loading_screen.dart';
 import 'widgets/widgets.dart';
 
 class AddRestaurantScreen extends StatefulWidget {
@@ -48,7 +48,7 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
   @override
   void initState() {
     _bloc = AddRestaurantsScreenBloc(widget._fastfoodInfo.fastfoodRepository);
-    _bloc.add(LoadRestaurants());
+    _bloc.add(LoadRestaurantsEvent());
     super.initState();
   }
 
@@ -185,8 +185,9 @@ class _AddRestaurantScreenState extends State<AddRestaurantScreen> {
                 ],
               );
             }
-            if (state is AddRestaurantsScreenFailure) {
-              return SomethingWrongScreen(_bloc);
+            if (state is AddRestaurantsScreenFailed) {
+              return SomethingWrongScreen(
+                  () => _bloc.add(LoadRestaurantsEvent()));
             }
             return const LoadingScreen();
           }),

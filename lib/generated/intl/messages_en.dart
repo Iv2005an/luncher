@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteRestaurant":
             MessageLookupByLibrary.simpleMessage("Delete restaurant?"),
         "deleting": MessageLookupByLibrary.simpleMessage("Deleting"),
+        "emptyOffers": MessageLookupByLibrary.simpleMessage("Empty offers"),
+        "loading": MessageLookupByLibrary.simpleMessage("loading..."),
         "metroStations":
             MessageLookupByLibrary.simpleMessage("Metro stations:"),
         "noRestaurant": MessageLookupByLibrary.simpleMessage("No restaurant"),
@@ -39,9 +41,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWentWrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong..."),
         "tryAgain": MessageLookupByLibrary.simpleMessage("Try again"),
-        "uploadingInformationAboutRestaurants":
-            MessageLookupByLibrary.simpleMessage(
-                "Uploading information about restaurants"),
         "wishes": MessageLookupByLibrary.simpleMessage("Wishes")
       };
 }

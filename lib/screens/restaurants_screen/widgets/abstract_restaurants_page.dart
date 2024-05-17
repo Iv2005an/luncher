@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:luncher/generated/l10n.dart';
 import 'package:luncher/screens/restaurants_screen/widgets/add_restaurant_button.dart';
 import 'package:luncher/screens/restaurants_screen/widgets/fastfood_logo.dart';
+import 'package:luncher/screens/widgets/loading_screen.dart';
 import '../bloc/restaurants_screen_bloc.dart';
 import '../models/fastfood_info.dart';
 import 'restaurant_card.dart';
@@ -27,32 +26,22 @@ class _AbstractRestaurantPageState extends State<AbstractRestaurantPage> {
 
   @override
   void initState() {
-    _restaurantsScreenBloc.add(LoadRestaurants());
+    _restaurantsScreenBloc.add(LoadRestaurantsEvent());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return BlocBuilder<RestaurantsScreenBloc, RestaurantsScreenState>(
       bloc: _restaurantsScreenBloc,
       builder: (context, state) {
-        Widget page = Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircularProgressIndicator.adaptive(),
-              const SizedBox(height: 16),
-              Text(S.of(context).uploadingInformationAboutRestaurants),
-            ],
-          ),
-        );
+        Widget page = const LoadingScreen();
         if (state is RestaurantsScreenLoaded) {
           page = Expanded(
               child: PageView.builder(
             controller: PageController(initialPage: state.selectedRestaurantId),
             onPageChanged: (value) => _restaurantsScreenBloc
-                .add(SelectRestaurant(state.restaurants[value].id)),
+                .add(SelectRestaurantEvent(state.restaurants[value].id)),
             itemCount: state.restaurants.length,
             itemBuilder: (context, index) => RestaurantCard(
                 _restaurantsScreenBloc, state.restaurants[index]),

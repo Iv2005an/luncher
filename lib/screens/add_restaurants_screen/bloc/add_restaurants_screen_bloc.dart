@@ -4,24 +4,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:luncher/repositories/fastfood_repository/fastfood_repository.dart';
 
-part 'add_restaurants_screen_events.dart';
-part 'add_restaurants_screen_states.dart';
+part 'add_restaurants_screen_event.dart';
+part 'add_restaurants_screen_state.dart';
 
 class AddRestaurantsScreenBloc
-    extends Bloc<AddRestaurantsEvent, AddRestaurantsScreenState> {
+    extends Bloc<AddRestaurantsScreenEvent, AddRestaurantsScreenState> {
   AddRestaurantsScreenBloc(this.restaurantsRepository)
       : super(AddRestaurantsScreenInitial()) {
-    on<LoadRestaurants>((event, emit) async {
+    on<LoadRestaurantsEvent>((event, emit) async {
       emit(AddRestaurantsScreenLoading());
       try {
         emit(AddRestaurantsScreenLoaded(
             await restaurantsRepository.allRestaurants));
       } catch (exception, stackTrace) {
         debugPrint('${exception.toString()}\n${stackTrace.toString()}');
-        emit(AddRestaurantsScreenFailure(exception));
+        emit(AddRestaurantsScreenFailed(exception));
       }
     });
-    on<AddRestaurant>((event, emit) async {
+    on<AddRestaurantEvent>((event, emit) async {
       await restaurantsRepository.addRestaurant(event.restaurant);
     });
   }

@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:luncher/repositories/fastfood_repository/fastfood_repository.dart';
 
-part 'restaurants_screen_events.dart';
-part 'restaurants_screen_states.dart';
+part 'restaurants_screen_event.dart';
+part 'restaurants_screen_state.dart';
 
 class RestaurantsScreenBloc
     extends Bloc<RestaurantsScreenEvent, RestaurantsScreenState> {
   RestaurantsScreenBloc(this.restaurantsRepository)
       : super(RestaurantsScreenInitial()) {
-    on<LoadRestaurants>((event, emit) async {
+    on<LoadRestaurantsEvent>((event, emit) async {
       emit(RestaurantsScreenLoading());
       try {
         final restaurants = await restaurantsRepository.restaurants;
@@ -24,7 +24,7 @@ class RestaurantsScreenBloc
               .indexWhere((restaurant) => restaurant.id == selectedRestaurant);
           if (selectedRestaurantId == -1) {
             selectedRestaurantId = 0;
-            add(SelectRestaurant(restaurants.first.id));
+            add(SelectRestaurantEvent(restaurants.first.id));
           }
           emit(RestaurantsScreenLoaded(
               restaurants,
@@ -35,14 +35,14 @@ class RestaurantsScreenBloc
         }
       } catch (exception, stackTrace) {
         debugPrint('${exception.toString()}\n${stackTrace.toString()}');
-        emit(RestaurantsScreenFailure(exception));
+        emit(RestaurantsScreenFailed(exception));
       }
     });
-    on<SelectRestaurant>((event, emit) async =>
+    on<SelectRestaurantEvent>((event, emit) async =>
         await restaurantsRepository.setSelectedRestaurant(event.restaurantId));
-    on<DeleteRestaurant>((event, emit) async {
+    on<DeleteRestaurantEvent>((event, emit) async {
       await restaurantsRepository.deleteRestaurant(event.restaurant);
-      add(LoadRestaurants());
+      add(LoadRestaurantsEvent());
     });
   }
   final AbstractFastfoodRepository restaurantsRepository;

@@ -20,43 +20,47 @@ class AddRestaurantBottomSheet extends StatelessWidget {
     final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Text(
-            _restaurant.address,
-            style: theme.textTheme.headlineSmall,
-          ),
-        ),
-        ListView(
-          shrinkWrap: true,
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            for (var metro in _restaurant.metroList)
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Color(metro.color),
-                ),
-                title: Text(metro.name),
-                subtitle: Text('${metro.distance.toInt()} м'),
-              )
-          ],
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: OutlinedButton(
-                  onPressed: () {
-                    _bloc.add(AddRestaurant(_restaurant));
-                    context.pushReplacement('/restaurants');
-                  },
-                  child: Text(
-                    S.of(context).addRestaurant,
-                    style: theme.textTheme.bodyMedium,
-                  )),
+            Text(
+              _restaurant.address,
+              style: theme.textTheme.headlineSmall,
             ),
-          ],
-        )
-      ]),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(_restaurant.city.name),
+            ),
+            ListView(
+              shrinkWrap: true,
+              children: [
+                for (var metro in _restaurant.metroList)
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Color(metro.color),
+                    ),
+                    title: Text(metro.name),
+                    subtitle: Text('${metro.distance.toInt()} м'),
+                  )
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                      onPressed: () {
+                        _bloc.add(AddRestaurantEvent(_restaurant));
+                        context.pushReplacement('/restaurants');
+                      },
+                      child: Text(
+                        S.of(context).addRestaurant,
+                        style: theme.textTheme.bodyMedium,
+                      )),
+                ),
+              ],
+            )
+          ]),
     );
   }
 }

@@ -1,39 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'rostics_restaurant_model.dart';
+part of 'city.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class RosticsRestaurantModelAdapter
-    extends TypeAdapter<RosticsRestaurantModel> {
+class CityAdapter extends TypeAdapter<City> {
   @override
-  final int typeId = 4;
+  final int typeId = 0;
 
   @override
-  RosticsRestaurantModel read(BinaryReader reader) {
+  City read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return RosticsRestaurantModel(
+    return City(
       fields[0] as String,
       fields[1] as String,
-      fields[2] as Location,
     );
   }
 
   @override
-  void write(BinaryWriter writer, RosticsRestaurantModel obj) {
+  void write(BinaryWriter writer, City obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.address)
-      ..writeByte(2)
-      ..write(obj.location);
+      ..write(obj.name);
   }
 
   @override
@@ -42,7 +38,7 @@ class RosticsRestaurantModelAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is RosticsRestaurantModelAdapter &&
+      other is CityAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -51,12 +47,12 @@ class RosticsRestaurantModelAdapter
 // JsonSerializableGenerator
 // **************************************************************************
 
-RosticsRestaurantModel _$RosticsRestaurantModelFromJson(
-        Map<String, dynamic> json) =>
-    RosticsRestaurantModel(
-      json['storeId'] as String,
-      RosticsRestaurantModel._readAddressFromJson(json, 'address') as String,
-      RosticsRestaurantModel._locationFromJson(
-          RosticsRestaurantModel._readLocationFromJson(json, 'location')
-              as Map<String, dynamic>),
+City _$CityFromJson(Map<String, dynamic> json) => City(
+      json['id'] as String,
+      json['name'] as String,
     );
+
+Map<String, dynamic> _$CityToJson(City instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

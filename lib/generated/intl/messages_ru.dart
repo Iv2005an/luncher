@@ -30,6 +30,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteRestaurant":
             MessageLookupByLibrary.simpleMessage("Удалить ресторан?"),
         "deleting": MessageLookupByLibrary.simpleMessage("Удаление"),
+        "emptyOffers":
+            MessageLookupByLibrary.simpleMessage("Предложения отсутствуют"),
+        "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
         "metroStations": MessageLookupByLibrary.simpleMessage("Станции метро:"),
         "noRestaurant":
             MessageLookupByLibrary.simpleMessage("Рестораны отсутствуют"),
@@ -40,9 +43,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWentWrong":
             MessageLookupByLibrary.simpleMessage("Что-то пошло не так..."),
         "tryAgain": MessageLookupByLibrary.simpleMessage("Попробовать снова"),
-        "uploadingInformationAboutRestaurants":
-            MessageLookupByLibrary.simpleMessage(
-                "Загрузка информации о ресторанах"),
         "wishes": MessageLookupByLibrary.simpleMessage("Пожелания")
       };
 }

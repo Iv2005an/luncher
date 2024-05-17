@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'location.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class Location extends Equatable {
   const Location(this.longitude, this.latitude);
 
@@ -14,5 +14,5 @@ class Location extends Equatable {
   final num latitude;
 
   @override
-  List<Object?> get props => [longitude, latitude];
+  List<Object> get props => [longitude, latitude];
 }

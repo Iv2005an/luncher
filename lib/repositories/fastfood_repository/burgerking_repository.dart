@@ -1,4 +1,4 @@
-part of 'fastfood.dart';
+part of 'fastfood_repository.dart';
 
 class BurgerkingRepository extends AbstractFastfoodRepository {
   @override
@@ -30,6 +30,24 @@ class BurgerkingRepository extends AbstractFastfoodRepository {
   @override
   Future<void> setSelectedRestaurant(String restaurantId) {
     // TODO: implement setSelectedRestaurant
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<City> getCity(String cityId) {
+    // TODO: implement getCity
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<AbstractCategoryModel>> getCategories() {
+    // TODO: implement getCategories
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Map<String, List<AbstractProductModel>>> getCategoriesProducts() {
+    // TODO: implement getProducts
     throw UnimplementedError();
   }
 }

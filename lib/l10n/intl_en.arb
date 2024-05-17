@@ -9,10 +9,11 @@
   "address": "Address: ",
   "metroStations": "Metro stations:",
   "cancel": "Cancel",
-  "uploadingInformationAboutRestaurants": "Uploading information about restaurants",
+  "loading": "loading...",
   "somethingWentWrong": "Something went wrong...",
   "tryAgain": "Try again",
   "deleting": "Deleting",
   "deleteRestaurant": "Delete restaurant?",
-  "noRestaurant": "No restaurant"
+  "noRestaurant": "No restaurant",
+  "emptyOffers": "Empty offers"
 }

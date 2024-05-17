@@ -13,7 +13,7 @@ class Launcher extends StatelessWidget {
     final theme = Theme.of(context);
     final pagesNames = [
       S.of(context).restaurants,
-      S.of(context).wishes,
+      // S.of(context).wishes,
       S.of(context).offers
     ];
     return Scaffold(
@@ -34,9 +34,8 @@ class Launcher extends StatelessWidget {
       body: _statefulNavigationShell,
       bottomNavigationBar: NavigationBar(
           selectedIndex: _statefulNavigationShell.currentIndex,
-          onDestinationSelected: (index) => _statefulNavigationShell.goBranch(
-              index,
-              initialLocation: index == _statefulNavigationShell.currentIndex),
+          onDestinationSelected: (index) =>
+              _statefulNavigationShell.goBranch(index),
           destinations: [
             NavigationDestination(
                 icon: const Icon(Icons.food_bank_outlined),
@@ -49,7 +48,7 @@ class Launcher extends StatelessWidget {
             NavigationDestination(
                 icon: const Icon(Icons.summarize_outlined),
                 selectedIcon: const Icon(Icons.summarize),
-                label: pagesNames[2]),
+                label: pagesNames[1]),
           ]),
     );
   }

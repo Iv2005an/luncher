@@ -26,6 +26,7 @@ class RestaurantCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(_restaurant.address, style: theme.textTheme.headlineSmall),
+                Text(_restaurant.city.name),
                 ListView(
                   shrinkWrap: true,
                   children: [
@@ -59,7 +60,7 @@ class RestaurantCard extends StatelessWidget {
                             onPressed: () {
                               Navigator.pop(context);
                               _restaurantsScreenBloc
-                                  .add(DeleteRestaurant(_restaurant));
+                                  .add(DeleteRestaurantEvent(_restaurant));
                             },
                             child: Text(S.of(context).delete),
                           ),

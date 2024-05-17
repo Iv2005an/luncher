@@ -9,10 +9,11 @@
   "address": "Адрес: ",
   "metroStations": "Станции метро:",
   "cancel": "Отмена",
-  "uploadingInformationAboutRestaurants": "Загрузка информации о ресторанах",
+  "loading": "Загрузка...",
   "somethingWentWrong": "Что-то пошло не так...",
   "tryAgain": "Попробовать снова",
   "deleting": "Удаление",
   "deleteRestaurant": "Удалить ресторан?",
-  "noRestaurant": "Рестораны отсутствуют"
+  "noRestaurant": "Рестораны отсутствуют",
+  "emptyOffers": "Предложения отсутствуют"
 }

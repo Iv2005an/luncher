@@ -14,7 +14,7 @@ class LoadingScreen extends StatelessWidget {
         children: [
           const CircularProgressIndicator.adaptive(),
           const SizedBox(height: 16),
-          Text(S.of(context).uploadingInformationAboutRestaurants),
+          Text(S.of(context).loading),
         ],
       ),
     );

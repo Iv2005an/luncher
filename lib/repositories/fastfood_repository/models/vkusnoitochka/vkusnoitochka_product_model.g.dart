@@ -1,39 +1,42 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'rostics_restaurant_model.dart';
+part of 'vkusnoitochka_product_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class RosticsRestaurantModelAdapter
-    extends TypeAdapter<RosticsRestaurantModel> {
+class VkusnoitochkaProductModelAdapter
+    extends TypeAdapter<VkusnoitochkaProductModel> {
   @override
-  final int typeId = 4;
+  final int typeId = 7;
 
   @override
-  RosticsRestaurantModel read(BinaryReader reader) {
+  VkusnoitochkaProductModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return RosticsRestaurantModel(
+    return VkusnoitochkaProductModel(
       fields[0] as String,
-      fields[1] as String,
-      fields[2] as Location,
+      fields[1] as double,
+      fields[2] as String,
+      fields[3] as double,
     );
   }
 
   @override
-  void write(BinaryWriter writer, RosticsRestaurantModel obj) {
+  void write(BinaryWriter writer, VkusnoitochkaProductModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.address)
+      ..write(obj.caloriesCount)
       ..writeByte(2)
-      ..write(obj.location);
+      ..write(obj.name)
+      ..writeByte(3)
+      ..write(obj.price);
   }
 
   @override
@@ -42,7 +45,7 @@ class RosticsRestaurantModelAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is RosticsRestaurantModelAdapter &&
+      other is VkusnoitochkaProductModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -51,12 +54,11 @@ class RosticsRestaurantModelAdapter
 // JsonSerializableGenerator
 // **************************************************************************
 
-RosticsRestaurantModel _$RosticsRestaurantModelFromJson(
+VkusnoitochkaProductModel _$VkusnoitochkaProductModelFromJson(
         Map<String, dynamic> json) =>
-    RosticsRestaurantModel(
-      json['storeId'] as String,
-      RosticsRestaurantModel._readAddressFromJson(json, 'address') as String,
-      RosticsRestaurantModel._locationFromJson(
-          RosticsRestaurantModel._readLocationFromJson(json, 'location')
-              as Map<String, dynamic>),
+    VkusnoitochkaProductModel(
+      json['id'] as String,
+      (json['energyKcal'] as num).toDouble(),
+      json['name'] as String,
+      (json['price'] as num).toDouble(),
     );

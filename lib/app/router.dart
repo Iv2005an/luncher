@@ -9,7 +9,7 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: '/wishes',
+  initialLocation: '/offers',
   routes: [
     StatefulShellRoute.indexedStack(
       branches: [
@@ -27,12 +27,12 @@ final router = GoRouter(
                 )
               ]),
         ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: '/wishes',
-            builder: (context, state) => const WishesScreen(),
-          ),
-        ]),
+        // StatefulShellBranch(routes: [
+        //   GoRoute(
+        //     path: '/wishes',
+        //     builder: (context, state) => const WishesScreen(),
+        //   ),
+        // ]),
         StatefulShellBranch(routes: [
           GoRoute(
             path: '/offers',

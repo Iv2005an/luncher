@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:luncher/generated/l10n.dart';
-import 'package:luncher/screens/add_restaurants_screen/bloc/add_restaurants_screen_bloc.dart';
 
 class SomethingWrongScreen extends StatelessWidget {
-  const SomethingWrongScreen(this._bloc, {super.key});
-  final AddRestaurantsScreenBloc _bloc;
+  const SomethingWrongScreen(this._onPressed, {super.key});
+  final Function _onPressed;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -14,7 +14,7 @@ class SomethingWrongScreen extends StatelessWidget {
           Text(S.of(context).somethingWentWrong),
           const SizedBox(height: 16),
           OutlinedButton(
-            onPressed: () => _bloc.add(LoadRestaurants()),
+            onPressed: () => _onPressed(),
             child: Text(S.of(context).tryAgain),
           )
         ],

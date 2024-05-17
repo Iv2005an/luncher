@@ -8,9 +8,27 @@ class HiveRosticsConfig implements AbstractHiveFastfoodConfig {
   }
 
   @override
+  Future<Box<City>> getCitiesBox() {
+    // TODO: implement getCitiesBox
+    throw UnimplementedError();
+  }
+
+  @override
   Future<Box<RosticsRestaurantModel>> getAllRestaurantsBox() async =>
       await AbstractHiveFastfoodConfig._getAllRestaurantsBox(fastfoodName);
   @override
   Future<Box<RosticsRestaurantModel>> getRestaurantsBox() async =>
       await AbstractHiveFastfoodConfig._getRestaurantsBox(fastfoodName);
+
+  @override
+  Future<Box<AbstractCategoryModel>> getCategoriesBox(String cityId) {
+    // TODO: implement getCategoriesBox
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Box<AbstractProductModel>> getProductsBox(String cityId) {
+    // TODO: implement getProductsBox
+    throw UnimplementedError();
+  }
 }

@@ -150,11 +150,11 @@ class S {
     );
   }
 
-  /// `Uploading information about restaurants`
-  String get uploadingInformationAboutRestaurants {
+  /// `loading...`
+  String get loading {
     return Intl.message(
-      'Uploading information about restaurants',
-      name: 'uploadingInformationAboutRestaurants',
+      'loading...',
+      name: 'loading',
       desc: '',
       args: [],
     );
@@ -205,6 +205,16 @@ class S {
     return Intl.message(
       'No restaurant',
       name: 'noRestaurant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty offers`
+  String get emptyOffers {
+    return Intl.message(
+      'Empty offers',
+      name: 'emptyOffers',
       desc: '',
       args: [],
     );

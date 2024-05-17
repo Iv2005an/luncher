@@ -9,7 +9,7 @@ part of 'vkusnoitochka_restaurant_model.dart';
 class VkusnoitochkaRestaurantModelAdapter
     extends TypeAdapter<VkusnoitochkaRestaurantModel> {
   @override
-  final int typeId = 4;
+  final int typeId = 5;
 
   @override
   VkusnoitochkaRestaurantModel read(BinaryReader reader) {
@@ -19,23 +19,26 @@ class VkusnoitochkaRestaurantModelAdapter
     };
     return VkusnoitochkaRestaurantModel(
       fields[0] as String,
-      fields[1] as String,
-      fields[2] as Location,
-      (fields[3] as List).cast<Metro>(),
+      fields[1] as City,
+      fields[2] as String,
+      fields[3] as Location,
+      (fields[4] as List).cast<Metro>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, VkusnoitochkaRestaurantModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.address)
+      ..write(obj.city)
       ..writeByte(2)
-      ..write(obj.location)
+      ..write(obj.address)
       ..writeByte(3)
+      ..write(obj.location)
+      ..writeByte(4)
       ..write(obj.metroList);
   }
 
@@ -58,6 +61,7 @@ VkusnoitochkaRestaurantModel _$VkusnoitochkaRestaurantModelFromJson(
         Map<String, dynamic> json) =>
     VkusnoitochkaRestaurantModel(
       json['id'] as String,
+      City.fromJson(json['city'] as Map<String, dynamic>),
       json['address'] as String,
       VkusnoitochkaRestaurantModel._locationFromJson(
           json['location'] as Map<String, dynamic>),
